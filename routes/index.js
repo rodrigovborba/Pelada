@@ -15,13 +15,7 @@ router.get('/authentication', (req, res, next) => {
   res.render('authentication');
 });
 
-router.get('/gamespage', (req, res, next) => {
-  res.render('gamespage');
-});
 
-router.get('/signup', (req, res, next) => {
-  res.render('signup');
-});
 
 router.post('/authentication', (req, res, next) => {
 
@@ -65,7 +59,7 @@ router.post('/login', (req, res, next) => {
   } = req.body;
 //console.log(username);
   User.findOne({
-      username: username
+      username
     })
     .then(user => {
       if (!user) {
@@ -78,7 +72,7 @@ router.post('/login', (req, res, next) => {
     .then(result => {
       if (result) {
         req.session.user = userId;
-        res.redirect('user');
+        res.redirect('gamespage');
       } else {
         return Promise.reject(new Error('Wrong password.'));
       }
@@ -91,6 +85,18 @@ router.post('/login', (req, res, next) => {
 router.post('/signout', (req, res, next) => {
   req.session.destroy();
   res.redirect('/');
+});
+
+router.get('/gamespage', (req, res, next) => {
+  res.render('gamespage');
+});
+
+router.get('/creategame', (req, res, next) => {
+  res.render('creategame');
+});
+
+router.get('/signup', (req, res, next) => {
+  res.render('signup');
 });
 
 module.exports = router;

@@ -10,48 +10,48 @@
 </ul>
 <div class="form-signs tab-content" id="pills-tabContent">
     <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-        <form>
+        <form action="/authentication" method="POST">
             <div class="form-group">
                 <label for="exampleInputEmail1">First Name</label>
                 <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                    placeholder="Enter username">
+                    placeholder="Enter username" name="firstname">
             </div>
             <div class="form-group">
-                <label for="exampleInputEmail1">Last Name</label>
+                <label for="exampleInputEmail1">Surname</label>
                 <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                    placeholder="Enter username">
+                    placeholder="Enter username" name="Surname">
             </div>
             <div class="form-group">
                 <label for="exampleInputEmail1">Email address</label>
                 <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                    placeholder="Enter email">
+                    placeholder="Enter email" name="email">
                 <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
                     else.</small>
             </div>
             <div class="form-group">
                 <label for="exampleInputEmail1">Username</label>
                 <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                    placeholder="Enter username">
+                    placeholder="Enter username" name="username">
             </div>
             <div class="form-group">
                 <label for="exampleInputPassword1">Password</label>
-                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="password">
             </div>
-            <a class="margin-bot btn btn-success text-center" href="/user">Create</a>
+            <button class="margin-bot btn btn-success text-center">Create</button>
         </form>
     </div>
     <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-        <form>
+        <form action="/login" method="POST">
             <div class="form-group">
                 <label for="exampleInputEmail1">Username</label>
                 <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                    placeholder="Enter username">
+                    placeholder="Enter username" name="username">
             </div>
             <div class="form-group">
                 <label for="exampleInputPassword1">Password</label>
-                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="password">
             </div>
-            <a class="margin-bot btn btn-success text-center" href="/user">Login</a>
+            <button class="margin-bot btn btn-success text-center">Login</button>
         </form>
     </div>
 </div>
