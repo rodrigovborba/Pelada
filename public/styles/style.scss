@@ -7,6 +7,10 @@ body {
   color: black;
 }
 
+.description {
+  color: white;
+}
+
 a {
   color: black;
 }
@@ -28,23 +32,26 @@ section {
 }
 
 .button-align {
-  padding-left: 550px;
+  padding-left: 570px;
   padding-top: 20px;
   color: white;
+  margin-bottom: 350px;
 }
 
 .button-align1 {
   padding-left: 530px;
   padding-top: 20px;
   color: white;
+  margin-bottom: 350px;
 }
 
 #map {
-  height: 500px;
-  width: 80%;
-  margin-left: 120px;
+  height: 400px;
+  width: 60%;
+  margin-left: 220px;
+  border: 2px solid green;
 }
 
-.map {
+.div-map {
   background-color: black;
 }
