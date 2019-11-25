@@ -5,7 +5,7 @@
 <div class="div-map" id="map"></div>
     <script>
         function initMap() {
-            window.onload = function () {
+            {{!-- window.onload = function () {
                 var startPos;
                 var geoSuccess = function (position) {
                     startPos = position;
@@ -13,7 +13,7 @@
                     document.getElementById('startLon').innerHTML = startPos.coords.longitude;
                 };
                 navigator.geolocation.getCurrentPosition(geoSuccess);
-            };
+            }; --}}
             const ironhackBCN = {
                 lat: 41.3977381,
                 lng: 2.190471916
@@ -30,6 +30,6 @@
     </script>
 </section>
 <section>
-    <a class="btn btn-success text-center" href="/signup">Join</a>
-    <a class="btn btn-success text-center" href="/">Create</a>
+    <a class="btn btn-success text-center" href="/authentication">Join</a>
+    <a class="btn btn-success text-center" href="/authentication">Create</a>
 </section>

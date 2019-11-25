@@ -11,11 +11,11 @@ router.get('/', (req, res, next) => {
   res.render('index');
 });
 
-router.get('/signup', (req, res, next) => {
-  res.render('signup');
+router.get('/authentication', (req, res, next) => {
+  res.render('authentication');
 });
 
-router.post('/signup', (req, res, next) => {
+router.post('/authentication', (req, res, next) => {
 
   const {
     firstname,
