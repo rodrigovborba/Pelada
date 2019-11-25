@@ -35,7 +35,9 @@
         <a class="nav-link" href="#">Messages</a>
       </li>
     </ul>
-    <a class="btn btn-success text-center my-2 my-sm-0" href="/">Log-out</a>
+    <form action="/signout" method="POST">
+      <button>Sign Out</button>
+    </form>
   {{else}}
   <a class="btn btn-success text-center my-2 my-sm-0" href="/authentication">Login</a>
   {{/if}}

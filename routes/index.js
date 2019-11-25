@@ -15,6 +15,14 @@ router.get('/authentication', (req, res, next) => {
   res.render('authentication');
 });
 
+router.get('/gamespage', (req, res, next) => {
+  res.render('gamespage');
+});
+
+router.get('/signup', (req, res, next) => {
+  res.render('signup');
+});
+
 router.post('/authentication', (req, res, next) => {
 
   const {
@@ -37,7 +45,7 @@ router.post('/authentication', (req, res, next) => {
     })
     .then(user => {
        //console.log('user created', user);
-      //req.session.user = user._id;
+      req.session.user = user._id;
       res.redirect('/');
     })
     .catch(error => {
@@ -55,7 +63,7 @@ router.post('/login', (req, res, next) => {
     username,
     password
   } = req.body;
-console.log(username);
+//console.log(username);
   User.findOne({
       username: username
     })
@@ -69,7 +77,7 @@ console.log(username);
     })
     .then(result => {
       if (result) {
-        //req.session.user = userId;
+        req.session.user = userId;
         res.redirect('user');
       } else {
         return Promise.reject(new Error('Wrong password.'));

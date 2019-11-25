@@ -1,11 +1,17 @@
-<section class="description">
-    <p>Looking for places or players to play football with?</p>
-    <p>This is the best plataform to create or join a team of players.</p>
-</section>
-<div class="div-map map-welcome-page" id="map"></div>
+<h2>This is games page</h2>
+ <div class="game-page-buttons">
+        <form action="" class="games-page-create-button">
+            <button>Create Group</button>
+        </form>
+           <form action="" class="games-page-join-button">
+            <button>Join Group</button>
+        </form>
+    </div>
+
+    <div class="google-map games-page-map" id="map"></div>
     <script>
-        function initMap() {
-            {{!-- window.onload = function () {
+         function initMap() {
+            window.onload = function () {
                 var startPos;
                 var geoSuccess = function (position) {
                     startPos = position;
@@ -13,7 +19,7 @@
                     document.getElementById('startLng').innerHTML = startPos.coords.longitude;
                 };
                 navigator.geolocation.getCurrentPosition(geoSuccess);
-            }; --}}
+            };
             const ironhackBCN = {
                 lat: 41.3977381,
                 lng: 2.190471916
@@ -28,8 +34,4 @@
         }
         initMap();
     </script>
-</section>
-<section>
-    <a class="btn btn-success text-center" href="/authentication">Join</a>
-    <a class="btn btn-success text-center" href="/authentication">Create</a>
-</section>
+</div>
