@@ -3,6 +3,7 @@ require('dotenv').config();
 const debug = require('debug')('pelada:server');
 const app = require('./app');
 const mongoose = require('mongoose');
+const connectMongo = require('connect-mongo');
 
 const PORT = parseInt(process.env.PORT, 10);
 const URI = process.env.MONGODB_URI;

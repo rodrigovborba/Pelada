@@ -1,8 +1,85 @@
-const { Router } = require('express');
+const {
+  Router
+} = require('express');
 const router = new Router();
 
+const bcryptjs = require('bcryptjs');
+const User = require('./../models/user');
+const routeGuard = require('./../middleware/guard');
+
 router.get('/', (req, res, next) => {
-  res.render('index', { title: 'Hello World!' });
+  res.render('index', {
+    title: 'Hello World!'
+  });
+});
+
+router.get('/signup', (req, res, next) => {
+  res.render('signup');
+});
+
+router.post('/signup', (req, res, next) => {
+
+  const {
+    firstname,
+    surname,
+    email,
+    username,
+    password
+  } = req.body;
+  bcryptjs
+    .hash(password, 10)
+    .then(hash => {
+      return User.create({
+        firstname,
+        surname,
+        email,
+        username,
+        passwordHash: hash
+      });
+    })
+    .then(user => {
+      // console.log('user created', user);
+      // req.session.user = user._id;
+      res.redirect('/');
+    })
+    .catch(error => {
+      next(error);
+    });
+});
+
+router.get('/login', (req, res, next) => {
+  res.render('login');
+});
+
+router.post('/login', (req, res, next) => {
+  let userId;
+  const {
+    username,
+    passwordHash
+  } = req.body;
+
+  User.findOne({
+      username
+    })
+    .then(user => {
+      if (!user) {
+        return Promise.reject(new Error('This user cant be found.'));
+      } else {
+        userId = user._id;
+        return bcryptjs.compare(passwordHash, user.passwordHash);
+      }
+    })
+    .then(result => {
+      if (result) {
+        req.session.user = userId;
+        res.redirect('/');
+      } else {
+        return Promise.reject(new Error('Wrong password.'));
+      }
+    })
+    .catch(error => {
+      next(error);
+    });
 });
 
 module.exports = router;
