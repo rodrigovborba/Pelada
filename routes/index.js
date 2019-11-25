@@ -8,9 +8,7 @@ const User = require('./../models/user');
 const routeGuard = require('./../middleware/guard');
 
 router.get('/', (req, res, next) => {
-  res.render('index', {
-    title: 'Hello World!'
-  });
+  res.render('index');
 });
 
 router.get('/signup', (req, res, next) => {
@@ -38,8 +36,8 @@ router.post('/signup', (req, res, next) => {
       });
     })
     .then(user => {
-      // console.log('user created', user);
-      // req.session.user = user._id;
+       //console.log('user created', user);
+      //req.session.user = user._id;
       res.redirect('/');
     })
     .catch(error => {
@@ -55,24 +53,24 @@ router.post('/login', (req, res, next) => {
   let userId;
   const {
     username,
-    passwordHash
+    password
   } = req.body;
-
+console.log(username);
   User.findOne({
-      username
+      username: username
     })
     .then(user => {
       if (!user) {
         return Promise.reject(new Error('This user cant be found.'));
       } else {
         userId = user._id;
-        return bcryptjs.compare(passwordHash, user.passwordHash);
+        return bcryptjs.compare(password, user.passwordHash);
       }
     })
     .then(result => {
       if (result) {
-        req.session.user = userId;
-        res.redirect('/');
+        //req.session.user = userId;
+        res.redirect('user');
       } else {
         return Promise.reject(new Error('Wrong password.'));
       }
@@ -80,6 +78,11 @@ router.post('/login', (req, res, next) => {
     .catch(error => {
       next(error);
     });
+});
+
+router.post('/signout', (req, res, next) => {
+  req.session.destroy();
+  res.redirect('/');
 });
 
 module.exports = router;
