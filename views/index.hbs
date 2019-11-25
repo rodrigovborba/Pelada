@@ -1,15 +1,34 @@
 <section>
-<p>Looking for places or players to play football with?</p>
-<p>This is the best plataform to create or join a team of players.</p>
+    <p>Looking for places or players to play football with?</p>
+    <p>This is the best plataform to create or join a team of players.</p>
 </section>
-<section id="map">
-<script>
-      if (!window.initMap) {
-        window.initMap = function () {}; 
-      }
+<div class="map">
+    <script>
+        function initMap() {
+            window.onload = function () {
+                var startPos;
+                var geoSuccess = function (position) {
+                    startPos = position;
+                    document.getElementById('startLat').innerHTML = startPos.coords.latitude;
+                    document.getElementById('startLon').innerHTML = startPos.coords.longitude;
+                };
+                navigator.geolocation.getCurrentPosition(geoSuccess);
+            };
+            const ironhackBCN = {
+                lat: 41.3977381,
+                lng: 2.190471916
+            };
+            const map = new google.maps.Map(
+                document.getElementById('map'),
+                {
+                    zoom: 5,
+                    center: ironhackBCN
+                }
+            );
+        }
+        initMap();
     </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDGD7_VrYPlO5F-qYuZSo_KSNAjHWev2Tg&callback=initMap"></script>
-</section>
+</div>
 <section>
     <a class="btn btn-success text-center" href="/pop-up">Join</a>
     <a class="btn btn-success text-center" href="/pop-up">Create</a>

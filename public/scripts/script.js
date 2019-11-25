@@ -46,6 +46,25 @@
 //   }
 // }
 
+// // const locateUser = () => {
+// //   const onGeolocationSuccess = event => {
+// //     console.log(event);
+// //   };
+// //   const onGeolocationError = event => {
+// //     console.log(event);
+// //   };
+// //   navigator.geolocation.getCurrentPosition(
+// //     onGeolocationSuccess,
+// //     onGeolocationError,
+// //     {
+// //       timeout: 45000
+// //     }
+// //   );
+// //   // navigator.geolocation.getCurrentPosition(event => onGeolocationSuccess(event), onGeolocationError, {});
+// // };
+
+// // locateUser();
+
 // const promisifiedLocateUser = options =>
 //   new Promise((resolve, reject) => {
 //     navigator.geolocation.getCurrentPosition(resolve, reject, options);
