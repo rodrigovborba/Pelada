@@ -35,18 +35,16 @@ section {
   padding-left: 570px;
   padding-top: 20px;
   color: white;
-  margin-bottom: 350px;
 }
 
 .button-align1 {
   padding-left: 530px;
   padding-top: 20px;
   color: white;
-  margin-bottom: 350px;
 }
 
-#map {
-  height: 400px;
+.map-welcome-page {
+  height: 330px;
   width: 60%;
   margin-left: 220px;
   border: 2px solid green;
@@ -54,4 +52,15 @@ section {
 
 .div-map {
   background-color: black;
+}
+
+.games-page-map {
+  width: 400px;
+  height: 400px;
+  border: 1px solid black;
+  margin: 20px;
+}
+
+.game-page-buttons {
+  display: flex;
 }
