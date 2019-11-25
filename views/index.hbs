@@ -3,31 +3,33 @@
     <p>This is the best plataform to create or join a team of players.</p>
 </section>
 <div class="div-map map-welcome-page" id="map"></div>
-    <script>
-        function initMap() {
-            {{!-- window.onload = function () {
-                var startPos;
-                var geoSuccess = function (position) {
-                    startPos = position;
-                    document.getElementById('startLat').innerHTML = startPos.coords.latitude;
-                    document.getElementById('startLng').innerHTML = startPos.coords.longitude;
-                };
-                navigator.geolocation.getCurrentPosition(geoSuccess);
-            }; --}}
-            const ironhackBCN = {
-                lat: 41.3977381,
-                lng: 2.190471916
-            };
-            const map = new google.maps.Map(
-                document.getElementById('map'),
-                {
-                    zoom: 5,
-                    center: ironhackBCN
-                }
-            );
+<script>
+    function initMap() {
+        const $mapContainer = document.getElementById('map');
+        window.onload = function () {
+
+            const promisifiedLocateUser = options =>
+                new Promise((resolve, reject) => {
+                    navigator.geolocation.getCurrentPosition(resolve, reject, options);
+                });
+
+            promisifiedLocateUser()
+                .then(data => {
+                    console.log('Success', data);
+                    new window.google.maps.Map($mapContainer, {
+                        center: { lat: data.coords.latitude, lng: data.coords.longitude },
+                        zoom: 11,
+                        mapTypeId: 'roadmap'
+                    });
+                })
+                .catch(error => {
+                    console.log('Error locating user', error);
+                });
         }
-        initMap();
-    </script>
+
+    }
+    initMap();
+</script>
 </section>
 <section>
     <a class="btn btn-success text-center" href="/authentication">Join</a>

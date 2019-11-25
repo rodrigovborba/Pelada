@@ -1,17 +1,17 @@
 const mongoose = require('mongoose');
 
 const schema = new mongoose.Schema({
-  firstname: {
+  gameName: {
+    type: String,
+    required: true,
+    trim: true
+  },
+  time: {
     type: String,
     trim: true
   },
-  surname: {
+  players: {
     type: String,
-    trim: true
-  },
-  email: {
-    type: String,
-    lowercase: true,
     trim: true
   },
   username: {
