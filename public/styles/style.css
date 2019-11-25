@@ -1,9 +1,36 @@
 body {
   margin: 0;
-  padding: 50px;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; }
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: white; }
 
 a {
-  color: #00b7ff; }
+  color: black; }
+
+.navbar-color {
+  background-color: green; }
+
+section {
+  padding-top: 50px;
+  padding-left: 50px;
+  padding-right: 50px;
+  background-color: black;
+  text-align: center; }
+
+.footer-color {
+  background-color: green; }
+
+.button-align {
+  padding-left: 550px;
+  padding-top: 20px;
+  color: white; }
+
+.button-align1 {
+  padding-left: 530px;
+  padding-top: 20px;
+  color: white; }
+
+#map {
+  height: 400px;
+  width: 400px; }
 
 /*# sourceMappingURL=style.css.map */
