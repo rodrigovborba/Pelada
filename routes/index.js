@@ -87,12 +87,23 @@ router.post('/login', (req, res, next) => {
 
 
 router.get('/games', (req, res, next) => {
-  res.render('games');
+
+  // const gameId = req.params.gameId;
+  // console.log(gameId);
+  Game.find()
+    .then(game => {
+      res.render('games', {game});
+      console.log(game);
+    })
+    .catch(error => {
+      next(error);
+    });
 });
 
 router.get('/creategame', (req, res, next) => {
   res.render('creategame');
 });
+
 
 router.post('/creategame', (req, res, next) => {
   const {
@@ -111,25 +122,14 @@ router.post('/creategame', (req, res, next) => {
     })
     .then(game => {
       console.log('user created', game);
-      // req.session.user = game._id;
-      res.redirect('/gamespage');
+     // req.session.user = game._id;
+      res.redirect('/games');
     })
     .catch(error => {
       next(error);
     });
 });
 
-router.get('/listgames', (req, res, next) => {
-  const gameId = req.params.gameId;
-  Game.findById(gameId)
-    .then(game => {
-      console.log(game);
-      res.render('gamespage', { game });
-    })
-    .catch(error => {
-      next(error);
-    });
-});
 
 router.get('/signup', (req, res, next) => {
   res.render('signup');
