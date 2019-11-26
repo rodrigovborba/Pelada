@@ -9,7 +9,7 @@ const schema = new mongoose.Schema({
   surname: {
     type: String,
     trim: true,
-    required: true,
+    required: true
   },
   email: {
     type: String,
@@ -29,6 +29,15 @@ const schema = new mongoose.Schema({
 passwordHash: {
     type: String,
     required: true
+  },
+  status: {
+    type: String,
+    enum: ['Pending Confirmation', 'Active'],
+    default: 'Pending Confirmation'
+  },
+  confirmationCode: {
+    type: String,
+    unique: true
   }
   
 });

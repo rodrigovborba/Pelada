@@ -9,6 +9,33 @@ const routeGuard = require('./../middleware/guard');
 const Game = require('./../models/creatinggame');
 
 
+const generateId = length => {
+  const characters =
+    '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  let token = '';
+  for (let i = 0; i < length; i++) {
+    token += characters[Math.floor(Math.random() * characters.length)];
+  }
+  return token
+};
+
+const token = generateId(15);
+
+
+const nodemailer = require('nodemailer');
+const EMAIL = 'ih174test@gmail.com';
+const PASSWORD = 'IH174@lis';
+
+const transporter = nodemailer.createTransport({
+  service: 'Gmail',
+  auth: {
+    user: EMAIL,
+    pass: PASSWORD
+  }
+});
+
+
+
 router.get('/', (req, res, next) => {
   res.render('index');
 });
@@ -40,13 +67,38 @@ router.post('/authentication', (req, res, next) => {
       });
     })
     .then(user => {
-      //console.log('user created', user);
       req.session.user = user._id;
+      transporter.sendMail({
+          from: `MENDES MENDES <${EMAIL}>`,
+          to: email,
+          subject: 'MENDES MENDES MENDES',
+          html: `<p>This is a test content </p>
+        <a href='http://localhost:3000/auth/confirm/${token}'>Click here to confirm your email </a>`
+        })
+        .then(response => {
+          user.status === 'Active';
+        })
+        .catch(error => {
+          console.log(error)
+        })
       res.redirect('/');
     })
     .catch(error => {
       next(error);
     });
+});
+
+router.get("/auth/confirm/:code", (req, res) => {
+  const {code} = req.params;
+  User.find({confirmationCode:{$eq: code}})
+  .then(result => {
+    User.update({_id: result[0]._id}, {status: 'Active'})
+    .then(() => {
+      res.render('authentication', result[0]);
+    })
+    .catch(err => console.log(err));
+  })
+  .catch(err => console.log(err));
 });
 
 router.get('/login', (req, res, next) => {
@@ -92,7 +144,9 @@ router.get('/games', (req, res, next) => {
   // console.log(gameId);
   Game.find()
     .then(game => {
-      res.render('games', {game});
+      res.render('games', {
+        game
+      });
       console.log(game);
     })
     .catch(error => {
@@ -122,12 +176,16 @@ router.post('/creategame', (req, res, next) => {
     })
     .then(game => {
       console.log('user created', game);
-     // req.session.user = game._id;
+      // req.session.user = game._id;
       res.redirect('/games');
     })
     .catch(error => {
       next(error);
     });
+});
+
+router.get('/singlegame', (req, res, next) => {
+  res.render('singlegame');
 });
 
 
