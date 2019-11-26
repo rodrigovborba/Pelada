@@ -51,10 +51,15 @@ section {
 .games-page-map {
   width: 400px;
   height: 400px;
-  border: 1px solid black;
+  border: 2px solid green;
   margin: 20px; }
 
 .game-page-buttons {
-  display: flex; }
+  display: flex;
+  margin-bottom: 70px; }
+
+.auth-h2 {
+  padding-left: 50px;
+  margin-top: 250px; }
 
 /*# sourceMappingURL=style.css.map */

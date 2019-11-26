@@ -72,7 +72,7 @@ router.post('/login', (req, res, next) => {
     .then(result => {
       if (result) {
         req.session.user = userId;
-        res.redirect('gamespage');
+        res.redirect('games');
       } else {
         return Promise.reject(new Error('Wrong password.'));
       }
@@ -87,8 +87,8 @@ router.post('/signout', (req, res, next) => {
   res.redirect('/');
 });
 
-router.get('/gamespage', (req, res, next) => {
-  res.render('gamespage');
+router.get('/games', (req, res, next) => {
+  res.render('games');
 });
 
 router.get('/creategame', (req, res, next) => {
