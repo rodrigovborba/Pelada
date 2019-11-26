@@ -5,4 +5,5 @@ router.get('/', (req, res, next) => {
   res.render('user');
 });
 
+
 module.exports = router;
