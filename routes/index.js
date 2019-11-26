@@ -139,19 +139,16 @@ router.post('/login', (req, res, next) => {
 
 
 router.get('/games', (req, res, next) => {
-
-  // const gameId = req.params.gameId;
-  // console.log(gameId);
   Game.find()
-    .then(game => {
-      res.render('games', {
-        game
-      });
-      console.log(game);
-    })
-    .catch(error => {
-      next(error);
+  .then(game => {
+    res.render('games', {
+      game
     });
+    console.log(game);
+  })
+  .catch(error => {
+    next(error);
+  });
 });
 
 router.get('/creategame', (req, res, next) => {
@@ -160,6 +157,7 @@ router.get('/creategame', (req, res, next) => {
 
 
 router.post('/creategame', (req, res, next) => {
+  const id = req.params.id;
   const {
     groupName,
     location,
@@ -175,17 +173,24 @@ router.post('/creategame', (req, res, next) => {
       time
     })
     .then(game => {
-      console.log('user created', game);
-      // req.session.user = game._id;
-      res.redirect('/games');
+      res.redirect('/singlegame/' + game._id);
     })
     .catch(error => {
       next(error);
     });
 });
 
-router.get('/singlegame', (req, res, next) => {
-  res.render('singlegame');
+router.get('/singlegame/:id', (req, res, next) => {
+  Game.find()
+    .then(game => {
+      res.render('singlegame', {
+        game
+      });
+      console.log(game);
+    })
+    .catch(error => {
+      next(error);
+    });
 });
 
 

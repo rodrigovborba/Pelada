@@ -10,7 +10,6 @@ const schema = new mongoose.Schema({
   location: {
     type: String,
     trim: true,
-    required: true
   },
   numberOfPlayers: {
     type: Number,

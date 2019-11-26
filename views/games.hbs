@@ -68,15 +68,18 @@
                 <div class="col-md-8">
                     <div class="card-body">
                         <h2 class="card-title">{{groupName}}</h2>
-                        <p class="card-text">Location: {{location}}</p>
                         <p class="card-text"> Number of players:{{numberOfPlayers}}</p>
                         <p class="card-text">Match day:{{dayOfPlay}}</p>
                         <p class="card-text">Time:{{time}}</p>
-                        <a href="/singlegame" class="btn btn-success button-to-info-games">Join</a>
+                        <a href="/singlegame/{{_id}}" class="btn btn-success button-to-info-games">Join</a>
+
                     </div>
                 </div>
             </div>
         </div>
         {{/each}}
-
-        </div>
+    </div>
+</div>
+    <div>
+        <a href="/creategame" class="create-button btn btn-success">Create Game</a>
+    </div>

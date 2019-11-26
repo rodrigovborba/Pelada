@@ -1,4 +1,173 @@
-<div class="single-game-page">
+<div class="sec-profile">
+    <div class="container">
+        <div class="row my-2">
+            <div class="col-lg-8 order-lg-2">
+                <ul class="nav nav-tabs">
+                    <li class="nav-item">
+                        <a href="" data-target="#profile" data-toggle="tab" class="nav-link active">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="" data-target="#edit" data-toggle="tab" class="nav-link">Edit</a>
+                    </li>
+                </ul>
+                <div class="tab-content py-4">
+                    <div class="tab-pane active" id="profile">
+                        <div class="row">
+                            <div class="col-md-6">
+                            </div>
+                            <div class="col-md-12">
+                                <h5 class="mt-2"><span class="fa fa-clock-o ion-clock float-right"></span></h5>
+                                <table class="table table-sm table-hover table-striped">
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <strong>First Name: </strong> {{user.firstname}}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <strong>Surname: </strong> {{user.surname}}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <strong>Email: </strong> {{user.email}}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <strong>Birthdate: </strong> {{user.birthdate}}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <strong>Position: </strong> {{user.position}}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <strong>Goals: </strong> {{user.goals}}
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <!--/row-->
+                    </div>
+                    <div class="tab-pane" id="edit">
+                        <form role="form" action="/profile/edit/{{user.id}}" method="POST">
+                            <div class="form-group row">
+                                <label class="col-lg-3 col-form-label form-control-label">First name</label>
+                                <div class="col-lg-9">
+                                    <input name="firstname" class="form-control" type="text" placeholder="{{user.firstname}}">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-lg-3 col-form-label form-control-label">Surname</label>
+                                <div class="col-lg-9">
+                                    <input name="surname" class="form-control disabled" type="text" placeholder="{{user.surname}}">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-lg-3 col-form-label form-control-label disabled">Email </label>
+                                <div class="col-lg-9">
+                                    <p> {{user.email}}
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-lg-3 col-form-label form-control-label">Birthdate</label>
+                                <div class="col-lg-9">
+                                    <input name="birthdate" class="form-control" type="date" value="">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-lg-3 col-form-label form-control-label">Position</label>
+                                <div class="col-lg-9">
+                                    <select name="position" class="form-control" name="position">
+                                        <option value="goalkeeper">Goalkeeper</option>
+                                        <option value="defender">Defender</option>
+                                        <option value="midfielder">Midfielder</option>
+                                        <option value="forward">Forward</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-lg-3 col-form-label form-control-label disabled">Username </label>
+                                <div class="col-lg-9">
+                                    <p> {{user.username}}
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-lg-3 col-form-label form-control-label"></label>
+                                <div class="col-lg-9">
+                                    <input type="reset" class="btn btn-secondary" value="Cancel">
+                                    <input type="submit" class="btn btn-success" value="Save Changes">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 order-lg-1 text-center" id="map">
+        
+              <script>
+            var map, infoWindow;
+            let markersArray = [];
+            function initMap() {
+                map = new google.maps.Map(document.getElementById('map'), {
+                    center: { lat: 38.6992185, lng: -9.2001777 },
+                    zoom: 11
+                });
+                addMarker({ lat: 38.6992185, lng: -9.2001777 }, "green");
+                infoWindow = new google.maps.InfoWindow;
 
-  <h4>Location</h4>
+                // Try HTML5 geolocation.
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(function (position) {
+                        var pos = {
+                            lat: position.coords.latitude,
+                            lng: position.coords.longitude
+                        };
+
+                        addMarker({ lat: position.coords.latitude, lng: position.coords.longitude }, "yellow");
+                        infoWindow.setPosition(pos);
+                        infoWindow.setContent('Location found.');
+                        infoWindow.open(map);
+                        map.setCenter(pos);
+                    }, function () {
+                        handleLocationError(true, infoWindow, map.getCenter());
+                    });
+                } else {
+                    // Browser doesn't support Geolocation
+                    handleLocationError(false, infoWindow, map.getCenter());
+                }
+            }
+            function addMarker(latLng, color) {
+                let url = "http://maps.google.com/mapfiles/ms/icons/";
+                url += color + "-dot.png";
+
+                let marker = new google.maps.Marker({
+                    map: map,
+                    position: latLng,
+                    icon: {
+                        url: url
+                    }
+                });
+
+                //store the marker object drawn in global array
+                markersArray.push(marker);
+            }
+
+            function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+                infoWindow.setPosition(pos);
+                infoWindow.setContent(browserHasGeolocation ?
+                    'Error: The Geolocation service failed.' :
+                    'Error: Your browser doesn\'t support geolocation.');
+                infoWindow.open(map);
+            }
+        </script>
+            </div>
+        </div>
+    </div>
 </div>
