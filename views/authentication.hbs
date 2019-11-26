@@ -1,6 +1,51 @@
+<<<<<<< HEAD
 <div class="d-flex bd-highlight">
     <div class="auth-h2">
         <h2>You need to be logged in to Join or Create a Game</h2>
+=======
+<ul class="form-signs nav nav-pills mb-3 justify-content-center" id="pills-tab" role="tablist">
+    <li class="nav-item">
+        <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab"
+            aria-controls="pills-home" aria-selected="true">Sign-Up</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab"
+            aria-controls="pills-profile" aria-selected="false">Sign-In</a>
+    </li>
+</ul>
+<div class="form-signs tab-content" id="pills-tabContent">
+    <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+        <form action="/authentication" method="POST">
+            <div class="form-group">
+                <label for="exampleInputEmail1">First Name</label>
+                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                    placeholder="Enter username" name="firstname">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Surname</label>
+                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                    placeholder="Enter username" name="Surname">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Email address</label>
+                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                    placeholder="Enter email" name="email">
+                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
+                    else.</small>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Username</label>
+                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                    placeholder="Enter username" name="username">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Password</label>
+                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password"
+                    name="password">
+            </div>
+            <button class="margin-bot btn btn-success text-center">Create</button>
+        </form>
+>>>>>>> 920bf985eda55e7ab0289516aaa525b1afe302d1
     </div>
     <div class="p-2 w-100 bd-highlight">
         <ul class="form-signs nav nav-pills mb-3 justify-content-center" id="pills-tab" role="tablist">

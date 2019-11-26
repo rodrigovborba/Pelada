@@ -1,25 +1,27 @@
 <h2>Create a game page</h2>
-<form action="/creategame">
-    <label for="username">Username</label>
-    <input type="text" name="username" placeholder="username">
+<form action="/creategame/{{games._id}}" method="POST">
+  <label for="groupName">Group Name</label>
+  <input type="text" name="groupName" >
 
-    <label for="location">Location</label>
-    <input type="text" name="location">
+  <label for="location">Location</label>
+  <input type="text" name="location">
 
-    <label for="number-of-players">Number of players needed</label>
-    <input type="number" name="numberOfPlayers">
+  <label for="number-of-players">Number of players needed</label>
+  <input type="number" name="numberOfPlayers">
 
-    <label for="day-of-match">Select a day</label>
-    <select name="dayOfPlay">
-      <option value="sunday">Sunday</option>
-      <option value="monday">Monday</option>
-      <option value="tuesday">Tuesday</option>
-      <option value="wednesday">Wednesday</option>
-      <option value="thursday">Thursday</option>
-      <option value="friday">Friday</option>
-      <option value="saturday">Saturday</option>
+  <label for="day-of-match">Select a day</label>
+  <select name="dayOfPlay">
+    <option value="sunday">Sunday</option>
+    <option value="monday">Monday</option>
+    <option value="tuesday">Tuesday</option>
+    <option value="wednesday">Wednesday</option>
+    <option value="thursday">Thursday</option>
+    <option value="friday">Friday</option>
+    <option value="saturday">Saturday</option>
   </select>
 
   <label for="time">Time</label>
-  <input type="time"  min="09:00" max="23:00" name="time" value="09:00" required>
+  <input type="time" min="09:00" max="23:00" name="time" value="09:00" required>
+
+  <button>Submit</button>
 </form>

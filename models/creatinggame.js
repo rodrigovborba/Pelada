@@ -6,8 +6,8 @@ const schema = new mongoose.Schema({
     unique: true,
     trim: true,
     lowercase: true
-},
-location: {
+  },
+  location: {
     type: String,
     trim: true
   },
@@ -22,12 +22,11 @@ location: {
   },
 
   time: {
-      type: Number,
-      required: true
+    type: String,
+    required: true
   }
 
 });
-const User = mongoose.model('User', schema);
+const Game = mongoose.model('Game', schema);
 
-module.exports = User;
-
+module.exports = Game;

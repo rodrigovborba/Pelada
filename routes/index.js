@@ -6,6 +6,8 @@ const router = new Router();
 const bcryptjs = require('bcryptjs');
 const User = require('./../models/user');
 const routeGuard = require('./../middleware/guard');
+const Game = require('./../models/creatinggame');
+
 
 router.get('/', (req, res, next) => {
   res.render('index');
@@ -38,7 +40,7 @@ router.post('/authentication', (req, res, next) => {
       });
     })
     .then(user => {
-       //console.log('user created', user);
+      //console.log('user created', user);
       req.session.user = user._id;
       res.redirect('/');
     })
@@ -57,7 +59,7 @@ router.post('/login', (req, res, next) => {
     username,
     password
   } = req.body;
-//console.log(username);
+  //console.log(username);
   User.findOne({
       username
     })
@@ -82,10 +84,7 @@ router.post('/login', (req, res, next) => {
     });
 });
 
-router.post('/signout', (req, res, next) => {
-  req.session.destroy();
-  res.redirect('/');
-});
+
 
 router.get('/games', (req, res, next) => {
   res.render('games');
@@ -95,8 +94,51 @@ router.get('/creategame', (req, res, next) => {
   res.render('creategame');
 });
 
+router.post('/creategame', (req, res, next) => {
+  const {
+    groupName,
+    location,
+    numberOfPlayers,
+    dayOfPlay,
+    time
+  } = req.body;
+  Game.create({
+      groupName,
+      location,
+      numberOfPlayers,
+      dayOfPlay,
+      time
+    })
+    .then(game => {
+      console.log('user created', game);
+      // req.session.user = game._id;
+      res.redirect('/gamespage');
+    })
+    .catch(error => {
+      next(error);
+    });
+});
+
+router.get('/listgames', (req, res, next) => {
+  const gameId = req.params.gameId;
+  Game.findById(gameId)
+    .then(game => {
+      console.log(game);
+      res.render('gamespage', { game });
+    })
+    .catch(error => {
+      next(error);
+    });
+});
+
 router.get('/signup', (req, res, next) => {
   res.render('signup');
+});
+
+
+router.post('/signout', (req, res, next) => {
+  req.session.destroy();
+  res.redirect('/');
 });
 
 module.exports = router;
