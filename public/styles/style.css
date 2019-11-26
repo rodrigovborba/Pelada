@@ -4,32 +4,35 @@ body {
   color: black; }
 
 .description {
-  color: white; }
+  color: black; }
 
 a {
   color: black; }
 
 .navbar-color {
-  background-color: green; }
+  background-color: green;
+  color: white; }
 
 section {
   padding-top: 50px;
   padding-left: 50px;
   padding-right: 50px;
-  background-color: black;
   text-align: center; }
 
 .footer-color {
-  background-color: green; }
+  background-color: green;
+  margin-top: 30px; }
 
 .button-align {
   padding-left: 570px;
   padding-top: 20px;
+  margin-bottom: 30px;
   color: white; }
 
 .button-align1 {
   padding-left: 530px;
   padding-top: 20px;
+  margin-bottom: 30px;
   color: white; }
 
 .map-welcome-page {
@@ -37,9 +40,6 @@ section {
   width: 60%;
   margin-left: 220px;
   border: 2px solid green; }
-
-.div-map {
-  background-color: black; }
 
 .form-signs {
   margin-left: 50%;

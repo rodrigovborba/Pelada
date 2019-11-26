@@ -24,13 +24,18 @@ const schema = new mongoose.Schema({
     trim: true,
     lowercase: true,
     required: true
-},
-
-passwordHash: {
+  },
+  passwordHash: {
     type: String,
     required: true
+  },
+  birthdate: {
+    type: String
+  },
+  position: {
+    type: String
   }
-  
+
 });
 
 const User = mongoose.model('User', schema);

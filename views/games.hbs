@@ -39,7 +39,6 @@
                 let marker = new google.maps.Marker({
                     map: map,
                     position: latLng,
-                    title: 'Hello World!',
                     icon: {
                         url: url
                     }
@@ -73,7 +72,7 @@
                         <p class="card-text"> Number of players:{{numberOfPlayers}}</p>
                         <p class="card-text">Match day:{{dayOfPlay}}</p>
                         <p class="card-text">Time:{{time}}</p>
-                        <input type="submit" value="Join this group">
+                        <input class="btn btn-success" type="submit" value="Join">
                     </div>
                 </div>
             </div>
