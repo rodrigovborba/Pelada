@@ -9,8 +9,7 @@ const schema = new mongoose.Schema({
   },
   location: {
     type: String,
-    trim: true,
-    required: true
+    trim: true
   },
   numberOfPlayers: {
     type: Number,
