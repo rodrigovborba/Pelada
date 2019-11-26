@@ -4,21 +4,24 @@ const schema = new mongoose.Schema({
   groupName: {
     type: String,
     unique: true,
-    trim: true,
+    required: true,
     lowercase: true
   },
   location: {
     type: String,
-    trim: true
+    trim: true,
+    required: true
   },
   numberOfPlayers: {
     type: Number,
-    trim: true
+    trim: true,
+    required: true
   },
   dayOfPlay: {
     type: String,
     lowercase: true,
-    trim: true
+    trim: true,
+    required: true
   },
 
   time: {

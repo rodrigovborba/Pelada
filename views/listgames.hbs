@@ -1,7 +1,9 @@
-<h2>Single Game</h2>
+<form action="/listgames" method="GET">
+  <h2>Single Game</h2>
 
 {{#with games}}
   {{> singlegame}}
 {{/with}}
 
-<a href="/gamespage/{{games._id}}" class="btn">Join</a>
+<a href="/gamespage/{{game._id}}" class="btn">Join</a>
+</form>
