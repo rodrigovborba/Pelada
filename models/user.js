@@ -19,12 +19,12 @@ const schema = new mongoose.Schema({
     unique: true,
     trim: true,
     lowercase: true
-},
-
-passwordHash: {
+  },
+  passwordHash: {
     type: String,
     required: true
-}
+  }
+  
 });
 
 const User = mongoose.model('User', schema);

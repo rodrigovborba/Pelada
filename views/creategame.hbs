@@ -1,27 +1,28 @@
-<h2>Create a game page</h2>
 <form action="/creategame/{{games._id}}" method="POST">
+<div class="form-group">
   <label for="groupName">Group Name</label>
-  <input type="text" name="groupName" >
-
-  <label for="location">Location</label>
-  <input type="text" name="location">
-
-  <label for="number-of-players">Number of players needed</label>
-  <input type="number" name="numberOfPlayers">
-
+  <input class="form-control" type="text" name="groupName" >
+</div>
+<div class="form-group">
+  <label for="number-of-players">Number of players</label>
+  <input type="number" min="1" max="30" name="numberOfPlayers" value="1" required>
+  </div>
+<div class="form-group">
   <label for="day-of-match">Select a day</label>
-  <select name="dayOfPlay">
-    <option value="sunday">Sunday</option>
-    <option value="monday">Monday</option>
-    <option value="tuesday">Tuesday</option>
-    <option value="wednesday">Wednesday</option>
-    <option value="thursday">Thursday</option>
-    <option value="friday">Friday</option>
-    <option value="saturday">Saturday</option>
-  </select>
-
+  <input class="form-control" type="date" name="dayOfPlay">
+  </div>
+<div class="form-group">
   <label for="time">Time</label>
-  <input type="time" min="09:00" max="23:00" name="time" value="09:00" required>
-
-  <button>Submit</button>
+  <select name="time">
+    <option value="13:00 - 14:30">13:00 - 14:30</option>
+    <option value="14:30 - 16:00">14:30 - 16:00</option>
+    <option value="16:00 - 17:30">16:00 - 17:30</option>
+    <option value="17:30 - 19:00">17:30 - 19:00</option>
+    <option value="19:00 - 20:30">19:00 - 20:30</option>
+    <option value="20:30 - 22:00">20:30 - 22:00</option>
+    <option value="22:00 - 23:30">22:00 - 23:30</option>
+    <option value="23:30 - 01:00">23:30 - 01:00</option>
+  </select>
+</div>
+    <button class="btn btn-success">Create Game</button>
 </form>

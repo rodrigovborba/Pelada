@@ -9,6 +9,7 @@ const hbs = require('hbs');
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/user');
+const profileRouter = require('./routes/profile');
 
 const app = express();
 
@@ -77,6 +78,7 @@ app.use((req, res, next) => {
 
   app.use('/', indexRouter);
   app.use('/user', usersRouter);
+  app.use('/profile', profileRouter);
 
   app.use('*', (req, res, next) => {
     const error = new Error('Page not found.');
