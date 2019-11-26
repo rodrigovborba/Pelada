@@ -35,6 +35,33 @@ const transporter = nodemailer.createTransport({
 });
 
 
+//google sign in settings
+const passport = require('passport');
+const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+
+//signing in with the google account
+passport.use(new GoogleStrategy({
+  clientID: process.env.GOOGLE_CLIENTE_ID,
+  clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+  callbackURL: "http://localhost:3000/auth/google/callback"
+},
+function(accessToken, refreshToken, profile, done) {
+     User.findOrCreate({ googleId: profile.id }, function (err, user) {
+       return done(err, user);
+     });
+}
+));
+
+router.get('/auth/google',
+  passport.authenticate('google', { scope: ['https://www.googleapis.com/auth/plus.login'] }));
+
+router.get('/auth/google/callback', 
+  passport.authenticate('google', { failureRedirect: '/authentication' }),
+  function(req, res) {
+    res.redirect('/');
+  });
+
+
 
 router.get('/', (req, res, next) => {
   res.render('index');
@@ -88,7 +115,7 @@ router.post('/authentication', (req, res, next) => {
     });
 });
 
-router.get("/auth/confirm/:code", (req, res) => {
+router.get("/auth/confirm.hbs/:code", (req, res) => {
   const {code} = req.params;
   User.find({confirmationCode:{$eq: code}})
   .then(result => {
@@ -205,3 +232,8 @@ router.post('/signout', (req, res, next) => {
 });
 
 module.exports = router;
+
+
+// clientid 750193338798-kij85gnubqg38sjbieb57tvglfeajp85.apps.googleusercontent.com
+
+// client secret IC5KRgFJa1tbwTlmMH8sGWLA

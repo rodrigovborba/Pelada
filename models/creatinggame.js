@@ -9,7 +9,7 @@ const schema = new mongoose.Schema({
   },
   location: {
     type: String,
-    trim: true,
+    trim: true
   },
   numberOfPlayers: {
     type: Number,
