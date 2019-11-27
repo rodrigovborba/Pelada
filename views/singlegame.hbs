@@ -17,6 +17,7 @@
                         <div class="row">
                             <div class="col-md-6">
                             </div>
+                            {{!-- Field Information --}}
                             <div class="col-md-12">
                                 <h3>Field Information</h3>
                                 <h5 class="mt-2"><span class="fa fa-clock-o ion-clock float-right"></span></h5>
@@ -40,6 +41,7 @@
                                     </tbody>
                                 </table>
                             </div>
+                            {{!-- Game Information --}}
                             <div class="col-md-12">
                                 <h3>Game Information</h3>
                                 <h5 class="mt-2"><span class="fa fa-clock-o ion-clock float-right"></span></h5>
@@ -68,14 +70,39 @@
                                     </tbody>
                                 </table>
                             </div>
+                            {{!-- Users --}}
+                            <div class="col-md-12">
+                                <h3>Users</h3>
+                                <h5 class="mt-2"><span class="fa fa-clock-o ion-clock float-right"></span></h5>
+                                <table class="table table-hover table-striped text-center">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Name</th>
+                                            <th scope="col">Position</th>
+                                            <th scope="col">Goals</th>
+                                            <th scope="col">#</th>
+                                        </tr>
+                                    </thead>
+                                    {{#each players}}
+                                    <tbody id="myTable">
+                                        <tr class="table table-striped">
+                                            <td>{{firstName}}</td>
+                                            <td>{{position}}</td>
+                                            <td>{{goals}}</td>
+                                            <td><a href="/singlegame/{{_id}}"
+                                                    class="btn btn-success button-to-info-games">Join</a></td>
+                                        </tr>
+                                    </tbody>
+                                    {{/each}}
+                                </table>
                                 <div class="form-group row">
                                     <label class="col-lg-3 col-form-label form-control-label"></label>
                                     <div class="col-lg-9">
                                         <button class="btn btn-success">Join</button>
                                     </div>
                                 </div>
+                            </div>
                         </div>
-                        <!--/row-->
                     </div>
                     <div class="tab-pane" id="edit">
                         <form role="form" action="/edit/{{game.id}}" method="POST">
