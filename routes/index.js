@@ -57,7 +57,7 @@ router.post('/authentication', (req, res, next) => {
     surname,
     email,
     username,
-    password
+    password,
   } = req.body;
   bcryptjs
     .hash(password, 10)

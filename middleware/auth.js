@@ -36,31 +36,10 @@ router.get('/auth/google/callback',
     res.redirect('/');
   });
 
-  function onSignIn(googleUser) {
-    let profile = googleUser.getBasicProfile();
-    console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-    console.log('Name: ' + profile.getName());
-    console.log('Image URL: ' + profile.getImageUrl());
-    console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-  }
-
-  // const auth = require('./../middleware/auth');
-// const passport = require('passport');
-// const cookieParser = require('cookie-parser');
-
-// auth(passport);
-// router.use(passport.initialize());
-// router.get('/', (req, res) => {
-//     res.json({
-//         status: 'session cookie not set'
-//     });
-// });
-// router.get('/auth/google', passport.authenticate('google', {
-//     scope: ['https://www.googleapis.com/auth/userinfo.profile']
-// }));
-// router.get('/auth/google/callback',
-//     passport.authenticate('google', {
-//         failureRedirect: '/'
-//     }),
-//     (req, res) => {}
-// );
+  // function onSignIn(googleUser) {
+  //   let profile = googleUser.getBasicProfile();
+  //   console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+  //   console.log('Name: ' + profile.getName());
+  //   console.log('Image URL: ' + profile.getImageUrl());
+  //   console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+  // }
