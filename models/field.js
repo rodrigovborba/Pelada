@@ -9,7 +9,7 @@ const schema = new mongoose.Schema({
     type: Number,
     trim: true
   },
- 
+
   contact: {
     type: String,
     trim: true,
@@ -21,15 +21,15 @@ const schema = new mongoose.Schema({
   },
   photo: {
     type: String,
-    default:'../images/deafaultPic.jpg'
+    default: '../images/deafaultPic.jpg'
   },
   lat: {
-      type: Number,
-      required: true
+    type: Number,
+    required: true
   },
   lng: {
-      type: Number,
-      required: true
+    type: Number,
+    required: true
   }
 
 });
