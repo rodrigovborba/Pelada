@@ -52,7 +52,7 @@ router.get('/authentication', (req, res, next) => {
 // routes for the sign up logic merge with the email confirmation send to user after click event on sign up button
 router.post('/authentication', (req, res, next) => {
 
-  
+
   const {
     firstname,
     surname,
@@ -155,7 +155,7 @@ router.post('/login', (req, res, next) => {
 
 
 // Get all games
-router.get('/games', (req, res, next) => {
+router.get('/games', routeGuard, (req, res, next) => {
   Game.find()
     .then(game => {
       res.render('games', {
@@ -168,16 +168,18 @@ router.get('/games', (req, res, next) => {
     });
 });
 
-router.get('/creategame', (req, res, next) => {
+router.get('/creategame', routeGuard, (req, res, next) => {
   Field.find({})
-  .then(fields => {
-    res.render('creategame', {fields});
-  });
-  
+    .then(fields => {
+      res.render('creategame', {
+        fields
+      });
+    });
+
 });
 
 
-router.post('/creategame', (req, res, next) => {
+router.post('/creategame', routeGuard, (req, res, next) => {
   const author = req.session.user;
   const id = req.params.id;
   const {
@@ -203,12 +205,12 @@ router.post('/creategame', (req, res, next) => {
     });
 });
 
-router.get('/singlegame/:id', (req, res, next) => {
+router.get('/singlegame/:id', routeGuard, (req, res, next) => {
   const id = req.params.id;
   Game.findById(id)
-  .populate("location")
-  .then(game => {
-    //console.log(game);
+    .populate("location")
+    .then(game => {
+      //console.log(game);
       res.render('singlegame', {
         game
       });
@@ -218,44 +220,46 @@ router.get('/singlegame/:id', (req, res, next) => {
     });
 });
 
-router.post('/edit/:id', (req, res, next) => {
+router.post('/edit/:id', routeGuard, (req, res, next) => {
   const id = req.params.id;
   const {
-     groupName,
+    groupName,
+    numberOfPlayers,
+    dayOfPlay,
+    time
+  } = req.body;
+  Game.findByIdAndUpdate(id, {
+      groupName,
       numberOfPlayers,
       dayOfPlay,
       time
-  } = req.body;
-          Game.findByIdAndUpdate(id, {
-            groupName,
-              numberOfPlayers,
-              dayOfPlay,
-              time
-          })
-          .then(game => {
-              res.redirect('/singlegame/' + game._id);
-          })
-          .catch(error => {
-              next(error);
-          });
-      });
+    })
+    .then(game => {
+      res.redirect('/singlegame/' + game._id);
+    })
+    .catch(error => {
+      next(error);
+    });
+});
 
 
-router.get('/signup', (req, res, next) => {
+router.get('/signup', routeGuard, (req, res, next) => {
   res.render('signup');
 });
 
 
-router.post('/signout', (req, res, next) => {
+router.post('/signout', routeGuard, (req, res, next) => {
   req.session.destroy();
   res.redirect('/');
 });
 
-router.get('/fields/index', (req, res, next) => {
+router.get('/fields/index', routeGuard, (req, res, next) => {
   Field.find({})
-  .then(fields => {
-    res.render('fields/index', {fields});
-  });
+    .then(fields => {
+      res.render('fields/index', {
+        fields
+      });
+    });
 });
 
 module.exports = router;
