@@ -10,9 +10,9 @@
 
 
                     <div id="show">
-                    <li class="nav-item">
-                        <a href="" data-target="#edit" data-toggle="tab" class="nav-link">Edit</a>
-                    </li>
+                        <li class="nav-item">
+                            <a href="" data-target="#edit" data-toggle="tab" class="nav-link">Edit</a>
+                        </li>
                     </div>
 
                     {{!-- {{#ifEquals user._id game.author}}
@@ -20,7 +20,7 @@
                        SHOOOOOW ME
                        </h1> 
                     {{/ifEquals}} --}}
-                    
+
                 </ul>
                 <div class="tab-content py-4">
                     <div class="tab-pane active" id="profile">
@@ -33,32 +33,22 @@
                                     <tbody>
                                         <tr>
                                             <td>
-                                                <strong>First Name: </strong> {{game.groupName}}
+                                                <strong>First Name </strong> {{game.groupName}}
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>
-                                                <strong>Surname: </strong> {{user.surname}}
+                                                <strong>Number of Players </strong> {{game.numberOfPlayers}}
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>
-                                                <strong>Email: </strong> {{user.email}}
+                                                <strong>Date </strong> {{game.dayOfPlay}}
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>
-                                                <strong>Birthdate: </strong> {{user.birthdate}}
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <strong>Position: </strong> {{user.position}}
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <strong>Goals: </strong> {{user.goals}}
+                                                <strong>Time </strong> {{game.time}}
                                             </td>
                                         </tr>
                                     </tbody>
@@ -68,53 +58,54 @@
                         <!--/row-->
                     </div>
                     <div class="tab-pane" id="edit">
-                        <form role="form" action="/profile/edit/{{user.id}}" method="POST">
+                        <form role="form" action="/creategame" method="POST">
                             <div class="form-group row">
-                                <label class="col-lg-3 col-form-label form-control-label">First name</label>
+                                <label class="col-lg-3 col-form-label form-control-label disabled">User name </label>
                                 <div class="col-lg-9">
-                                    <input name="firstname" class="form-control" type="text" placeholder="{{user.firstname}}">
+                                    <p> {{user.firstname}}
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-lg-3 col-form-label form-control-label">Surname</label>
+                                <label for="groupName" class="col-lg-3 col-form-label form-control-label">Name</label>
                                 <div class="col-lg-9">
-                                    <input name="surname" class="form-control disabled" type="text" placeholder="{{user.surname}}">
+                                    <input name="groupName" class="form-control" type="text" value="{{game.groupName}}">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-lg-3 col-form-label form-control-label disabled">Email </label>
+                                <label for="numberOfPlayers" class="col-lg-3 col-form-label form-control-label">Number
+                                    of
+                                    Players</label>
                                 <div class="col-lg-9">
-                                    <p> {{user.email}}
+                                    <input name="numberOfPlayers" class="form-control disabled" type="number"
+                                        value="{{game.numberOfPlayers}}">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-lg-3 col-form-label form-control-label">Birthdate</label>
+                                <label for="dayOfPlay" class="col-lg-3 col-form-label form-control-label">Date</label>
                                 <div class="col-lg-9">
-                                    <input name="birthdate" class="form-control" type="date" value="">
+                                    <input name="dayOfPlay" class="form-control" type="date" value="{{game.dayOfPlay}}">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-lg-3 col-form-label form-control-label">Position</label>
+                                <label for="time" class="col-lg-3 col-form-label form-control-label">Time</label>
                                 <div class="col-lg-9">
-                                    <select name="position" class="form-control" name="position">
-                                        <option value="goalkeeper">Goalkeeper</option>
-                                        <option value="defender">Defender</option>
-                                        <option value="midfielder">Midfielder</option>
-                                        <option value="forward">Forward</option>
+                                    <select name="time" class="form-control">
+                                        <option value="{{game.time}}">13:00 - 14:30</option>
+                                        <option value="14:30 - 16:00">14:30 - 16:00</option>
+                                        <option value="16:00 - 17:30">16:00 - 17:30</option>
+                                        <option value="17:30 - 19:00">17:30 - 19:00</option>
+                                        <option value="19:00 - 20:30">19:00 - 20:30</option>
+                                        <option value="20:30 - 22:00">20:30 - 22:00</option>
+                                        <option value="22:00 - 23:30">22:00 - 23:30</option>
+                                        <option value="23:30 - 01:00">23:30 - 01:00</option>
                                     </select>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-lg-3 col-form-label form-control-label disabled">Username </label>
-                                <div class="col-lg-9">
-                                    <p> {{user.username}}
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-lg-3 col-form-label form-control-label"></label>
                                 <div class="col-lg-9">
                                     <input type="reset" class="btn btn-secondary" value="Cancel">
-                                    <input type="submit" class="btn btn-success" value="Save Changes">
+                                    <button class="btn btn-success">Create Game</button>
                                 </div>
                             </div>
                         </form>
@@ -122,63 +113,63 @@
                 </div>
             </div>
             <div class="col-lg-4 order-lg-1 text-center" id="map">
-        
-              <script>
-            var map, infoWindow;
-            let markersArray = [];
-            function initMap() {
-                map = new google.maps.Map(document.getElementById('map'), {
-                    center: { lat: 38.6992185, lng: -9.2001777 },
-                    zoom: 11
-                });
-                addMarker({ lat: 38.6992185, lng: -9.2001777 }, "green");
-                infoWindow = new google.maps.InfoWindow;
 
-                // Try HTML5 geolocation.
-                if (navigator.geolocation) {
-                    navigator.geolocation.getCurrentPosition(function (position) {
-                        var pos = {
-                            lat: position.coords.latitude,
-                            lng: position.coords.longitude
-                        };
+                <script>
+                    var map, infoWindow;
+                    let markersArray = [];
+                    function initMap() {
+                        map = new google.maps.Map(document.getElementById('map'), {
+                            center: { lat: 38.6992185, lng: -9.2001777 },
+                            zoom: 11
+                        });
+                        addMarker({ lat: 38.6992185, lng: -9.2001777 }, "green");
+                        infoWindow = new google.maps.InfoWindow;
 
-                        addMarker({ lat: position.coords.latitude, lng: position.coords.longitude }, "yellow");
-                        infoWindow.setPosition(pos);
-                        infoWindow.setContent('Location found.');
-                        infoWindow.open(map);
-                        map.setCenter(pos);
-                    }, function () {
-                        handleLocationError(true, infoWindow, map.getCenter());
-                    });
-                } else {
-                    // Browser doesn't support Geolocation
-                    handleLocationError(false, infoWindow, map.getCenter());
-                }
-            }
-            function addMarker(latLng, color) {
-                let url = "http://maps.google.com/mapfiles/ms/icons/";
-                url += color + "-dot.png";
+                        // Try HTML5 geolocation.
+                        if (navigator.geolocation) {
+                            navigator.geolocation.getCurrentPosition(function (position) {
+                                var pos = {
+                                    lat: position.coords.latitude,
+                                    lng: position.coords.longitude
+                                };
 
-                let marker = new google.maps.Marker({
-                    map: map,
-                    position: latLng,
-                    icon: {
-                        url: url
+                                addMarker({ lat: position.coords.latitude, lng: position.coords.longitude }, "yellow");
+                                infoWindow.setPosition(pos);
+                                infoWindow.setContent('Location found.');
+                                infoWindow.open(map);
+                                map.setCenter(pos);
+                            }, function () {
+                                handleLocationError(true, infoWindow, map.getCenter());
+                            });
+                        } else {
+                            // Browser doesn't support Geolocation
+                            handleLocationError(false, infoWindow, map.getCenter());
+                        }
                     }
-                });
+                    function addMarker(latLng, color) {
+                        let url = "http://maps.google.com/mapfiles/ms/icons/";
+                        url += color + "-dot.png";
 
-                //store the marker object drawn in global array
-                markersArray.push(marker);
-            }
+                        let marker = new google.maps.Marker({
+                            map: map,
+                            position: latLng,
+                            icon: {
+                                url: url
+                            }
+                        });
 
-            function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-                infoWindow.setPosition(pos);
-                infoWindow.setContent(browserHasGeolocation ?
-                    'Error: The Geolocation service failed.' :
-                    'Error: Your browser doesn\'t support geolocation.');
-                infoWindow.open(map);
-            }
-        </script>
+                        //store the marker object drawn in global array
+                        markersArray.push(marker);
+                    }
+
+                    function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+                        infoWindow.setPosition(pos);
+                        infoWindow.setContent(browserHasGeolocation ?
+                            'Error: The Geolocation service failed.' :
+                            'Error: Your browser doesn\'t support geolocation.');
+                        infoWindow.open(map);
+                    }
+                </script>
             </div>
         </div>
     </div>
