@@ -6,21 +6,11 @@
                     <li class="nav-item">
                         <a href="" data-target="#profile" data-toggle="tab" class="nav-link active">Info</a>
                     </li>
-
-
-
                     <div id="show">
                         <li class="nav-item">
                             <a href="" data-target="#edit" data-toggle="tab" class="nav-link">Edit</a>
                         </li>
                     </div>
-
-                    {{!-- {{#ifEquals user._id game.author}}
-                       <h1>
-                       SHOOOOOW ME
-                       </h1> 
-                    {{/ifEquals}} --}}
-
                 </ul>
                 <div class="tab-content py-4">
                     <div class="tab-pane active" id="profile">
@@ -28,17 +18,41 @@
                             <div class="col-md-6">
                             </div>
                             <div class="col-md-12">
+                                <h3>Field Information</h3>
                                 <h5 class="mt-2"><span class="fa fa-clock-o ion-clock float-right"></span></h5>
                                 <table class="table table-sm table-hover table-striped">
                                     <tbody>
                                         <tr>
                                             <td>
-                                                <strong>First Name </strong> {{game.groupName}}
+                                                <strong>Name </strong> {{game.location.name}}
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>
-                                                <strong>Number of Players </strong> {{game.numberOfPlayers}}
+                                                <strong>Location </strong> {{game.location.location}}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <strong>Rating </strong> {{game.location.rating}}
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="col-md-12">
+                                <h3>Game Information</h3>
+                                <h5 class="mt-2"><span class="fa fa-clock-o ion-clock float-right"></span></h5>
+                                <table class="table table-sm table-hover table-striped">
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <strong>Creator </strong> {{game.groupName}}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <strong>Players Needed </strong> {{game.numberOfPlayers}}
                                             </td>
                                         </tr>
                                         <tr>
@@ -54,6 +68,12 @@
                                     </tbody>
                                 </table>
                             </div>
+                                <div class="form-group row">
+                                    <label class="col-lg-3 col-form-label form-control-label"></label>
+                                    <div class="col-lg-9">
+                                        <button class="btn btn-success">Join</button>
+                                    </div>
+                                </div>
                         </div>
                         <!--/row-->
                     </div>

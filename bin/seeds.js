@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 //importing the celebrities model
 const Field = require('../models/field');
 
-const MONGODB_URI = 'mongodb://localhost/Fields-pelada-database';
+const MONGODB_URI = 'mongodb://localhost/pelada-database';
 
 // Connection to the database "Fields-pelada-database"
 mongoose
@@ -58,7 +58,7 @@ Field.create([{
     ])
 
     .then(() => {
-        console.log('Celebrities was successfully created!');
+        console.log('Fields were successfully created!');
     })
 
     .catch(err => {

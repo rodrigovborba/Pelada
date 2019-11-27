@@ -7,6 +7,7 @@ const bcryptjs = require('bcryptjs');
 const User = require('./../models/user');
 const routeGuard = require('./../middleware/guard');
 const Game = require('./../models/creatinggame');
+const Field = require('./../models/field');
 // const clientID = process.env.GOOGLE_CLIENTE_ID;
 // const clientSecret = process.env.GOOGLE_CLIENT_SECRET;
 
@@ -168,7 +169,11 @@ router.get('/games', (req, res, next) => {
 });
 
 router.get('/creategame', (req, res, next) => {
-  res.render('creategame');
+  Field.find({})
+  .then(fields => {
+    res.render('creategame', {fields});
+  });
+  
 });
 
 
@@ -201,13 +206,11 @@ router.post('/creategame', (req, res, next) => {
 router.get('/singlegame/:id', (req, res, next) => {
   const id = req.params.id;
   Game.findById(id)
+  .populate("location")
   .then(game => {
-    let check=false;
-      if(game.author === req.session.user) {check = true}
-      console.log("GAME AUTHOR",game.author, "üser id", req.session.user);
+    console.log(game);
       res.render('singlegame', {
-        game,
-        check
+        game
       });
     })
     .catch(error => {

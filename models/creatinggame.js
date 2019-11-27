@@ -8,8 +8,8 @@ const schema = new mongoose.Schema({
     lowercase: true
   },
   location: {
-    type: String,
-    trim: true
+    type: mongoose.Types.ObjectId,
+    ref: 'Field'
   },
   numberOfPlayers: {
     type: Number,
@@ -27,7 +27,7 @@ const schema = new mongoose.Schema({
     required: true
   },
   players: {
-    type: {}
+    type: Array
   },
   author: {
     type: mongoose.Types.ObjectId,

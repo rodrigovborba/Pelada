@@ -49,14 +49,12 @@
                 <div class="tab-pane" id="edit">
                   <form role="form" action="/creategame" method="POST">
                   <div class="form-group row">
-                      <label for="time" class="col-lg-3 col-form-label form-control-label">Location</label>
+                      <label for="location" class="col-lg-3 col-form-label form-control-label">Location</label>
                       <div class="col-lg-9">
-                        <select name="time" class="form-control">
-                         <option value="airfut">[Air Fut 53] --- Rua 25 de Abril, 10</option>
-                          <option value="urbansoccer">[Urban Soccer Lisboa] --- Grupo Desportivo Direito</option>
-                          <option value="decathlon">[Decathlon Amadora] --- Alto da Cabreira</option>
-                          <option value="infoot">[Infoot] --- Estr. Mem Martins</option>
-                          <option value="urbanfut">[Urban Fut 5] --- Estrada das Ligeiras, 34</option>
+                        <select name="location" class="form-control">
+                          {{#each fields}}
+                         <option value="{{this._id}}">{{this.name}} at {{this.location}}</option>
+                          {{/each}}
                         </select>
                       </div>
                     </div>
