@@ -161,7 +161,7 @@ router.get('/games', (req, res, next) => {
       res.render('games', {
         game
       });
-      console.log(game);
+      //console.log(game);
     })
     .catch(error => {
       next(error);
@@ -208,7 +208,7 @@ router.get('/singlegame/:id', (req, res, next) => {
   Game.findById(id)
   .populate("location")
   .then(game => {
-    console.log(game);
+    //console.log(game);
       res.render('singlegame', {
         game
       });

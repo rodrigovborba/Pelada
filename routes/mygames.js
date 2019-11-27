@@ -4,13 +4,13 @@ const Game = require('./../models/creatinggame');
 
 router.get('/', (req, res, next) => {
     const userId = req.session.user;
-    console.log(userId);
+   // console.log(userId);
     Game.find(
         {author: userId}
         )
     .populate("author")
       .then(game => {
-          console.log(game);
+          //console.log(game);
         res.render('mygames', {
           game
         });
