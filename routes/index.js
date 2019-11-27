@@ -252,7 +252,10 @@ router.post('/signout', (req, res, next) => {
 });
 
 router.get('/fields/index', (req, res, next) => {
-  res.render('fields/index');
+  Field.find({})
+  .then(fields => {
+    res.render('fields/index', {fields});
+  });
 });
 
 module.exports = router;
