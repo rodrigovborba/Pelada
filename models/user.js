@@ -43,6 +43,11 @@ const schema = new mongoose.Schema({
   confirmationCode: {
     type: String,
     unique: true
+  },
+
+  photo: {
+    type: String,
+    default:'../images/deafaultPic.jpg'
   }
 
 });
