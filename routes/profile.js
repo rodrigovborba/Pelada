@@ -3,7 +3,6 @@ const {
 } = require('express');
 const router = new Router();
 const User = require('./../models/user');
-const bcryptjs = require('bcryptjs');
 
 router.get('/:id', (req, res, next) => {
     const id = req.params.id;

@@ -25,7 +25,9 @@ app.set('views', join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
 hbs.registerPartials(__dirname + '/views/partials');
-
+hbs.registerHelper('ifEquals', function(arg1, arg2, options) {
+  return (arg1 === arg2) ? options.fn(this) : options.inverse(this);
+});
 app.use(logger('dev'));
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
@@ -37,6 +39,7 @@ app.use(sassMiddleware({
   sourceMap: true
 }));
 app.use(express.static(join(__dirname, 'public')));
+
 
 
 app.use(cookieParser());
