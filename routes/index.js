@@ -215,6 +215,28 @@ router.get('/singlegame/:id', (req, res, next) => {
     });
 });
 
+router.post('/edit/:id', (req, res, next) => {
+  const id = req.params.id;
+  const {
+     groupName,
+      numberOfPlayers,
+      dayOfPlay,
+      time
+  } = req.body;
+          Game.findByIdAndUpdate(id, {
+            groupName,
+              numberOfPlayers,
+              dayOfPlay,
+              time
+          })
+          .then(game => {
+              res.redirect('/singlegame/' + game._id);
+          })
+          .catch(error => {
+              next(error);
+          });
+      });
+
 
 router.get('/signup', (req, res, next) => {
   res.render('signup');

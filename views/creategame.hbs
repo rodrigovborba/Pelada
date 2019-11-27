@@ -48,6 +48,18 @@
                 <h5 class="mt-2"><span class="fa fa-clock-o ion-clock float-right"></span></h5>
                 <div class="tab-pane" id="edit">
                   <form role="form" action="/creategame" method="POST">
+                  <div class="form-group row">
+                      <label for="time" class="col-lg-3 col-form-label form-control-label">Location</label>
+                      <div class="col-lg-9">
+                        <select name="time" class="form-control">
+                         <option value="airfut">[Air Fut 53] --- Rua 25 de Abril, 10</option>
+                          <option value="urbansoccer">[Urban Soccer Lisboa] --- Grupo Desportivo Direito</option>
+                          <option value="decathlon">[Decathlon Amadora] --- Alto da Cabreira</option>
+                          <option value="infoot">[Infoot] --- Estr. Mem Martins</option>
+                          <option value="urbanfut">[Urban Fut 5] --- Estrada das Ligeiras, 34</option>
+                        </select>
+                      </div>
+                    </div>
                     <div class="form-group row">
                       <label class="col-lg-3 col-form-label form-control-label disabled">User name </label>
                       <div class="col-lg-9">
@@ -109,14 +121,65 @@
           </div>
         </div>
       </div>
-      <div class="col-lg-4 order-lg-1 text-center">
-        <img src="//placehold.it/150" class="mx-auto img-fluid img-circle d-block" alt="avatar">
-        <h6 class="mt-2">Upload a different photo</h6>
-        <label class="custom-file">
-          <input type="file" id="file" class="custom-file-input">
-          <span class="btn btn-success custom-file-control">Choose file</span>
-        </label>
-      </div>
+      <div class="col-lg-4 order-lg-1 text-center" id="map">
+
+                <script>
+                    var map, infoWindow;
+                    let markersArray = [];
+                    function initMap() {
+                        map = new google.maps.Map(document.getElementById('map'), {
+                            center: { lat: 38.6992185, lng: -9.2001777 },
+                            zoom: 11
+                        });
+                        addMarker({ lat: 38.6992185, lng: -9.2001777 }, "green");
+                        infoWindow = new google.maps.InfoWindow;
+
+                        // Try HTML5 geolocation.
+                        if (navigator.geolocation) {
+                            navigator.geolocation.getCurrentPosition(function (position) {
+                                var pos = {
+                                    lat: position.coords.latitude,
+                                    lng: position.coords.longitude
+                                };
+
+                                addMarker({ lat: position.coords.latitude, lng: position.coords.longitude }, "yellow");
+                                infoWindow.setPosition(pos);
+                                infoWindow.setContent('Location found.');
+                                infoWindow.open(map);
+                                map.setCenter(pos);
+                            }, function () {
+                                handleLocationError(true, infoWindow, map.getCenter());
+                            });
+                        } else {
+                            // Browser doesn't support Geolocation
+                            handleLocationError(false, infoWindow, map.getCenter());
+                        }
+                    }
+                    function addMarker(latLng, color) {
+                        let url = "http://maps.google.com/mapfiles/ms/icons/";
+                        url += color + "-dot.png";
+
+                        let marker = new google.maps.Marker({
+                            map: map,
+                            position: latLng,
+                            icon: {
+                                url: url
+                            }
+                        });
+
+                        //store the marker object drawn in global array
+                        markersArray.push(marker);
+                    }
+
+                    function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+                        infoWindow.setPosition(pos);
+                        infoWindow.setContent(browserHasGeolocation ?
+                            'Error: The Geolocation service failed.' :
+                            'Error: Your browser doesn\'t support geolocation.');
+                        infoWindow.open(map);
+                    }
+                </script>
+            </div>
     </div>
   </div>
 </div>

@@ -58,7 +58,7 @@
                         <!--/row-->
                     </div>
                     <div class="tab-pane" id="edit">
-                        <form role="form" action="/creategame" method="POST">
+                        <form role="form" action="/edit/{{game.id}}" method="POST">
                             <div class="form-group row">
                                 <label class="col-lg-3 col-form-label form-control-label disabled">User name </label>
                                 <div class="col-lg-9">
@@ -105,7 +105,7 @@
                                 <label class="col-lg-3 col-form-label form-control-label"></label>
                                 <div class="col-lg-9">
                                     <input type="reset" class="btn btn-secondary" value="Cancel">
-                                    <button class="btn btn-success">Create Game</button>
+                                    <input type="submit" class="btn btn-success" value="Save Changes">
                                 </div>
                             </div>
                         </form>
