@@ -7,7 +7,8 @@ const bcryptjs = require('bcryptjs');
 const User = require('./../models/user');
 const routeGuard = require('./../middleware/guard');
 const Game = require('./../models/creatinggame');
-
+// const clientID = process.env.GOOGLE_CLIENTE_ID;
+// const clientSecret = process.env.GOOGLE_CLIENT_SECRET;
 
 const generateId = length => {
   const characters =
@@ -35,44 +36,19 @@ const transporter = nodemailer.createTransport({
 });
 
 
-//google sign in settings
-const passport = require('passport');
-const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
-//signing in with the google account
-passport.use(new GoogleStrategy({
-  clientID: process.env.GOOGLE_CLIENTE_ID,
-  clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-  callbackURL: "http://localhost:3000/auth/google/callback"
-},
-function(accessToken, refreshToken, profile, done) {
-     User.findOrCreate({ googleId: profile.id }, function (err, user) {
-       return done(err, user);
-     });
-}
-));
-
-router.get('/auth/google',
-  passport.authenticate('google', { scope: ['https://www.googleapis.com/auth/plus.login'] }));
-
-router.get('/auth/google/callback', 
-  passport.authenticate('google', { failureRedirect: '/authentication' }),
-  function(req, res) {
-    res.redirect('/');
-  });
-
-
-
+//route for the welcome page
 router.get('/', (req, res, next) => {
   res.render('index');
 });
 
+//route for the sign up and sign in page
 router.get('/authentication', (req, res, next) => {
   res.render('authentication');
 });
 
 
-
+// routes for the sign up logic merge with the email confirmation send to user after click event on sign up button
 router.post('/authentication', (req, res, next) => {
 
   const {
@@ -115,19 +91,32 @@ router.post('/authentication', (req, res, next) => {
     });
 });
 
-router.get("/auth/confirm.hbs/:code", (req, res) => {
-  const {code} = req.params;
-  User.find({confirmationCode:{$eq: code}})
-  .then(result => {
-    User.update({_id: result[0]._id}, {status: 'Active'})
-    .then(() => {
-      res.render('authentication', result[0]);
+//routes for the email confirmation for updating the user status after confirming their email
+router.get('/auth/confirm', (req, res) => {
+  const {
+    code
+  } = req.params;
+  User.find({
+      confirmationCode: {
+        $eq: code
+      }
+    })
+    .then(result => {
+      User.update({
+          _id: result[0]._id
+        }, {
+          status: 'Active'
+        })
+        .then(() => {
+          res.render('auth/confirm', result[0]);
+        })
+        .catch(err => console.log(err));
     })
     .catch(err => console.log(err));
-  })
-  .catch(err => console.log(err));
 });
 
+
+//routes for the login logic
 router.get('/login', (req, res, next) => {
   res.render('login');
 });
@@ -167,15 +156,15 @@ router.post('/login', (req, res, next) => {
 
 router.get('/games', (req, res, next) => {
   Game.find()
-  .then(game => {
-    res.render('games', {
-      game
+    .then(game => {
+      res.render('games', {
+        game
+      });
+      console.log(game);
+    })
+    .catch(error => {
+      next(error);
     });
-    console.log(game);
-  })
-  .catch(error => {
-    next(error);
-  });
 });
 
 router.get('/creategame', (req, res, next) => {
@@ -234,6 +223,4 @@ router.post('/signout', (req, res, next) => {
 module.exports = router;
 
 
-// clientid 750193338798-kij85gnubqg38sjbieb57tvglfeajp85.apps.googleusercontent.com
-
-// client secret IC5KRgFJa1tbwTlmMH8sGWLA
+//https://console.developers.google.com/apis/credentials/oauthclient/750193338798-pgjqff1kf3gllts6c4g3t9g9uk2rtjp6.apps.googleusercontent.com?project=pelada-1574796387099&authuser=0
