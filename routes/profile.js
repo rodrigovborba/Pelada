@@ -5,7 +5,6 @@ const router = new Router();
 const User = require('./../models/user');
 const bcryptjs = require('bcryptjs');
 const uploadCloud = require('../middleware/cloudinary');
-const Photo = require('../models/photo.js');
 
 router.get('/:id',(req, res, next) => {
     const id = req.params.id;

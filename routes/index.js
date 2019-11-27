@@ -248,6 +248,10 @@ router.post('/signout', (req, res, next) => {
   res.redirect('/');
 });
 
+router.get('/fields/index', (req, res, next) => {
+  res.render('fields/index');
+});
+
 module.exports = router;
 
 
