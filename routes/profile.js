@@ -5,8 +5,9 @@ const router = new Router();
 const User = require('./../models/user');
 const bcryptjs = require('bcryptjs');
 const uploadCloud = require('../middleware/cloudinary');
+const routeGuard = require('./../middleware/guard')
 
-router.get('/:id',(req, res, next) => {
+router.get('/:id', routeGuard, (req, res, next) => {
     const id = req.params.id;
     User.findById(id)
         .then(user => {
@@ -19,7 +20,7 @@ router.get('/:id',(req, res, next) => {
         });
 });
 
-router.post('/edit/:id', (req, res, next) => {
+router.post('/edit/:id', routeGuard, (req, res, next) => {
     const id = req.params.id;
     const {
         firstname,
