@@ -3,9 +3,12 @@ const {
 } = require('express');
 const router = new Router();
 const User = require('./../models/user');
+<<<<<<< HEAD
 const bcryptjs = require('bcryptjs');
 const uploadCloud = require('../middleware/cloudinary');
 const Photo = require('../models/photo.js');
+=======
+>>>>>>> 066286889398bbbd77af84dcad2a9608d5c58d43
 
 router.get('/:id', uploadCloud.single('photo'), (req, res, next) => {
     const id = req.params.id;

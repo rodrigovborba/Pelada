@@ -22,10 +22,17 @@ const schema = new mongoose.Schema({
     trim: true,
     required: true
   },
-
   time: {
     type: String,
     required: true
+  },
+  players: {
+    type: {}
+  },
+  author: {
+    type: mongoose.Types.ObjectId,
+    required: true,
+    ref: 'User'
   }
 
 });

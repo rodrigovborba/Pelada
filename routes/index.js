@@ -36,6 +36,36 @@ const transporter = nodemailer.createTransport({
 });
 
 
+<<<<<<< HEAD
+=======
+// //google sign in settings
+// const passport = require('passport');
+// const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+
+// //signing in with the google account
+// passport.use(new GoogleStrategy({
+//   clientID: process.env.GOOGLE_CLIENTE_ID,
+//   clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+//   callbackURL: "http://localhost:3000/auth/google/callback"
+// },
+// function(accessToken, refreshToken, profile, done) {
+//      User.findOrCreate({ googleId: profile.id }, function (err, user) {
+//        return done(err, user);
+//      });
+// }
+// ));
+
+// router.get('/auth/google',
+//   passport.authenticate('google', { scope: ['https://www.googleapis.com/auth/plus.login'] }));
+
+// router.get('/auth/google/callback', 
+//   passport.authenticate('google', { failureRedirect: '/authentication' }),
+//   function(req, res) {
+//     res.redirect('/');
+//   });
+
+
+>>>>>>> 066286889398bbbd77af84dcad2a9608d5c58d43
 
 //route for the welcome page
 router.get('/', (req, res, next) => {
@@ -51,6 +81,7 @@ router.get('/authentication', (req, res, next) => {
 // routes for the sign up logic merge with the email confirmation send to user after click event on sign up button
 router.post('/authentication', (req, res, next) => {
 
+  
   const {
     firstname,
     surname,
@@ -127,7 +158,6 @@ router.post('/login', (req, res, next) => {
     username,
     password
   } = req.body;
-  //console.log(username);
   User.findOne({
       username
     })
@@ -153,7 +183,7 @@ router.post('/login', (req, res, next) => {
 });
 
 
-
+// Get all games
 router.get('/games', (req, res, next) => {
   Game.find()
     .then(game => {
@@ -173,6 +203,7 @@ router.get('/creategame', (req, res, next) => {
 
 
 router.post('/creategame', (req, res, next) => {
+  const author = req.session.user;
   const id = req.params.id;
   const {
     groupName,
@@ -184,6 +215,7 @@ router.post('/creategame', (req, res, next) => {
   Game.create({
       groupName,
       location,
+      author,
       numberOfPlayers,
       dayOfPlay,
       time
@@ -197,12 +229,16 @@ router.post('/creategame', (req, res, next) => {
 });
 
 router.get('/singlegame/:id', (req, res, next) => {
-  Game.find()
-    .then(game => {
+  const id = req.params.id;
+  Game.findById(id)
+  .then(game => {
+    let check=false;
+      if(game.author === req.session.user) {check = true}
+      console.log("GAME AUTHOR",game.author, "üser id", req.session.user);
       res.render('singlegame', {
-        game
+        game,
+        check
       });
-      console.log(game);
     })
     .catch(error => {
       next(error);
