@@ -168,6 +168,7 @@ router.get('/games', (req, res, next) => {
     });
 });
 
+// Create Game - Get all fields
 router.get('/creategame', (req, res, next) => {
   Field.find({})
   .then(fields => {
@@ -176,7 +177,7 @@ router.get('/creategame', (req, res, next) => {
   
 });
 
-
+// Create Game
 router.post('/creategame', (req, res, next) => {
   const author = req.session.user;
   const id = req.params.id;
@@ -203,10 +204,29 @@ router.post('/creategame', (req, res, next) => {
     });
 });
 
+// Join Game
+router.post('/joingame/:id', (req, res, next) => {
+  const gamesid = req.params.id;
+  const playerid = req.session.user;
+          Game.findByIdAndUpdate(gamesid, {
+            $push: {
+              players: playerid
+              }
+          })
+          .then(game => {
+            console.log(game);
+              res.redirect('/singlegame/' + game._id);
+          })
+          .catch(error => {
+              next(error);
+          });
+      });
+
+// Rendering single page
 router.get('/singlegame/:id', (req, res, next) => {
   const id = req.params.id;
   Game.findById(id)
-  .populate("location")
+  .populate("location players")
   .then(game => {
     //console.log(game);
       res.render('singlegame', {

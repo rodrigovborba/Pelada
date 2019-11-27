@@ -26,9 +26,12 @@ const schema = new mongoose.Schema({
     type: String,
     required: true
   },
-  players: {
-    type: Array
-  },
+  players: [{
+    type: mongoose.Types.ObjectId,
+    default: "",
+    unique: true,
+    ref: "User"
+  }],
   author: {
     type: mongoose.Types.ObjectId,
     required: true,

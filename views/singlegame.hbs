@@ -83,14 +83,14 @@
                                             <th scope="col">#</th>
                                         </tr>
                                     </thead>
-                                    {{#each players}}
+                                    {{#each game.players}}
                                     <tbody id="myTable">
                                         <tr class="table table-striped">
-                                            <td>{{firstName}}</td>
-                                            <td>{{position}}</td>
-                                            <td>{{goals}}</td>
+                                            <td>{{this.firstname}}</td>
+                                            <td>{{this.position}}</td>
+                                            <td>{{this.goals}}</td>
                                             <td><a href="/singlegame/{{_id}}"
-                                                    class="btn btn-success button-to-info-games">Join</a></td>
+                                                    class="btn btn-danger button-to-info-games">Delete</a></td>
                                         </tr>
                                     </tbody>
                                     {{/each}}
@@ -98,7 +98,9 @@
                                 <div class="form-group row">
                                     <label class="col-lg-3 col-form-label form-control-label"></label>
                                     <div class="col-lg-9">
+                                        <form action="/joingame/{{game.id}}" method="POST" >
                                         <button class="btn btn-success">Join</button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
