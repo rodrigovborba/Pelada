@@ -100,13 +100,13 @@
                                     <label class="col-lg-3 col-form-label form-control-label"></label>
                                     <div class="col-lg-9">
 
-{{#unless attending}}
-                                        
+                                        {{#unless attending}}
+
                                         <form action="/joingame/{{game.id}}" method="POST">
                                             <button class="btn btn-success">Join</button>
                                         </form>
 
-{{/unless}}
+                                        {{/unless}}
 
                                     </div>
                                 </div>
