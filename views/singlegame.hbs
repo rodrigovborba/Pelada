@@ -6,12 +6,12 @@
                     <li class="nav-item">
                         <a href="" data-target="#profile" data-toggle="tab" class="nav-link active">Info</a>
                     </li>
-                    <div id="show">
-                        <li class="nav-item">
-                            <a href="" data-target="#edit" data-toggle="tab" class="nav-link">Edit</a>
-                        </li>
-                    </div>
+                    {{#if helper}}
+                    <li class="nav-item" id="show">
+                        <a href="" data-target="#edit" data-toggle="tab" class="nav-link">Edit</a>
+                    </li>
                 </ul>
+                {{/if}}
                 <div class="tab-content py-4">
                     <div class="tab-pane active" id="profile">
                         <div class="row">
@@ -49,7 +49,7 @@
                                     <tbody>
                                         <tr>
                                             <td>
-                                                <strong>Creator </strong> {{game.groupName}}
+                                                <strong>Game Name </strong> {{game.groupName}}
                                             </td>
                                         </tr>
                                         <tr>
@@ -92,6 +92,7 @@
                                             <td>
                                                 <form action="/user/{{../game.id}}/delete" method="POST">
                                                     <button class="btn btn-danger">Leave</button>
+                                                </form>
                                         </tr>
                                     </tbody>
                                     {{/each}}
@@ -99,15 +100,11 @@
                                 <div class="form-group row">
                                     <label class="col-lg-3 col-form-label form-control-label"></label>
                                     <div class="col-lg-9">
-
                                         {{#unless attending}}
-
                                         <form action="/joingame/{{game.id}}" method="POST">
                                             <button class="btn btn-success">Join</button>
-                                        </form>
-
                                         {{/unless}}
-
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -116,7 +113,8 @@
                     <div class="tab-pane" id="edit">
                         <form role="form" action="/edit/{{game.id}}" method="POST">
                             <div class="form-group row">
-                                <label class="col-lg-3 col-form-label form-control-label disabled">User name </label>
+                                <label class="col-lg-3 col-form-label form-control-label disabled">User name
+                                </label>
                                 <div class="col-lg-9">
                                     <p> {{user.firstname}}
                                 </div>

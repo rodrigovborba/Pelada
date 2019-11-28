@@ -26,8 +26,14 @@ app.set('views', join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
 hbs.registerPartials(__dirname + '/views/partials');
-hbs.registerHelper('ifEquals', function(arg1, arg2, options) {
-  return (arg1 === arg2) ? options.fn(this) : options.inverse(this);
+
+
+hbs.registerHelper('equal', function(lvalue, rvalue, options) {
+  if ( lvalue == rvalue ) {
+    return options.inverse(this);
+  } else {
+    return options.fn(this);
+  }
 });
 
 app.use(logger('dev'));
