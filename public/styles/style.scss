@@ -16,7 +16,7 @@ a {
 }
 
 .navbar-color {
-  background-color: green;
+  background-color: green;//rgba($color: black, $alpha: 0.2);
   color: white;
 }
 
@@ -80,7 +80,7 @@ section {
 }
 
 .sec-profile {
-  margin-left: 100px;
+  margin-left: 50px;
   margin-right: 100px;
   margin-top: 50px;
 }
@@ -95,3 +95,23 @@ section {
   flex-direction: column;
   margin: 30px 0;
 }
+
+// styling the backgrounds
+// .main-div-background {
+//   background-image: url('../images/pelada1.jpg');
+//   background-size: cover;
+// }
+
+// .p-2{
+//   box-shadow: 2px 12px 16px 18px rgba(0,0,0,0.75);
+//   background-color: rgba($color: white, $alpha: 0.1);
+//   height: 100%vh;
+// }
+
+// .d-flex{
+//   height: 700px;
+// }
+
+// .my-2 {
+//   background-color: rgba($color: green, $alpha: 0.1);
+// }

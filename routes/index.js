@@ -155,7 +155,7 @@ router.post('/login', (req, res, next) => {
 
 
 // Get all games
-router.get('/games', (req, res, next) => {
+router.get('/games', routeGuard, (req, res, next) => {
   Game.find()
     .then(game => {
       res.render('games', {
@@ -169,7 +169,7 @@ router.get('/games', (req, res, next) => {
 });
 
 // Create Game - Get all fields
-router.get('/creategame', (req, res, next) => {
+router.get('/creategame', routeGuard, (req, res, next) => {
   Field.find({})
   .then(fields => {
     res.render('creategame', {fields});
@@ -178,7 +178,7 @@ router.get('/creategame', (req, res, next) => {
 });
 
 // Create Game
-router.post('/creategame', (req, res, next) => {
+router.post('/creategame', routeGuard, (req, res, next) => {
   const author = req.session.user;
   const id = req.params.id;
   const {
@@ -205,7 +205,7 @@ router.post('/creategame', (req, res, next) => {
 });
 
 // Join Game
-router.post('/joingame/:id', (req, res, next) => {
+router.post('/joingame/:id', routeGuard, (req, res, next) => {
   const gamesid = req.params.id;
   const playerid = req.session.user;
           Game.findByIdAndUpdate(gamesid, {
@@ -223,7 +223,7 @@ router.post('/joingame/:id', (req, res, next) => {
       });
 
 // Rendering single page
-router.get('/singlegame/:id', (req, res, next) => {
+router.get('/singlegame/:id', routeGuard, (req, res, next) => {
   const id = req.params.id;
   Game.findById(id)
   .populate("location players")
@@ -269,7 +269,7 @@ router.post('/user/:id/delete', (req, res, next) => {
 //     });
 // });
 
-router.post('/edit/:id', (req, res, next) => {
+router.post('/edit/:id', routeGuard, (req, res, next) => {
   const id = req.params.id;
   const {
      groupName,
@@ -302,8 +302,10 @@ router.post('/signout', (req, res, next) => {
   res.redirect('/');
 });
 
-router.get('/fields/index', (req, res, next) => {
-  res.render('fields/index');
+router.get('/fields/index', routeGuard, (req, res, next) => {
+  Field.find({}).then(fields => {
+    res.render('fields/index', {fields});
+  });
 });
 
 module.exports = router;
