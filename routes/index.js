@@ -205,7 +205,7 @@ router.post('/creategame', routeGuard, (req, res, next) => {
 });
 
 // Join Game
-router.post('/joingame/:id', routeGuard, (req, res, next) => {
+router.post('/joingame/:id', (req, res, next) => {
   const gamesid = req.params.id;
   const playerid = req.session.user;
           Game.findByIdAndUpdate(gamesid, {
@@ -214,7 +214,7 @@ router.post('/joingame/:id', routeGuard, (req, res, next) => {
               }
           })
           .then(game => {
-            console.log(game);
+            console.log(playerid);
               res.redirect('/singlegame/' + game._id);
           })
           .catch(error => {
@@ -225,12 +225,18 @@ router.post('/joingame/:id', routeGuard, (req, res, next) => {
 // Rendering single page
 router.get('/singlegame/:id', routeGuard, (req, res, next) => {
   const id = req.params.id;
+  let helper = false;
   Game.findById(id)
   .populate("location players")
   .then(game => {
-    //console.log(game);
+    console.log("AUTHOR",game.author, "USER ID",req.session.user);
+    if (game.author == req.session.user) {
+      console.log("NOTICE ME")
+      helper = true;
+    }
       res.render('singlegame', {
-        game
+        game,
+        helper
       });
     })
     .catch(error => {
@@ -247,6 +253,7 @@ router.post('/user/:id/delete', (req, res, next) => {
               }
           })
           .then(game => {
+            console.log("GAMES DELETE ROUTE");
             console.log("GAMES", gamesid);
             console.log("PLAYERS", playerid);
               res.redirect('/singlegame/' + game._id);

@@ -28,8 +28,8 @@ const schema = new mongoose.Schema({
   },
   players: [{
     type: mongoose.Types.ObjectId,
-    default: "",
     unique: true,
+    default: "",
     ref: "User"
   }],
   author: {
