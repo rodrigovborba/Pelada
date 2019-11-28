@@ -244,6 +244,7 @@ router.get('/singlegame/:id', routeGuard, (req, res, next) => {
       console.log("NOTICE ME")
       helper = true;
     }
+
       res.render('singlegame', {
         game,
         helper,

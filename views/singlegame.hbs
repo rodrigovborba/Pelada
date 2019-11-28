@@ -90,12 +90,18 @@
                                             <td>{{this.position}}</td>
                                             <td>{{this.goals}}</td>
                                             <td>
+                                                 <h1>
+
+                                                 </h1>
+                                                  {{#notEqual this.username ../user.username }}
                                                 <form action="/user/{{../game.id}}/delete" method="POST">
                                                     <button class="btn btn-danger">Leave</button>
                                                 </form>
+                                                 {{/notEqual}}
+                                    {{/each}}
+                                            
                                         </tr>
                                     </tbody>
-                                    {{/each}}
                                 </table>
                                 <div class="form-group row">
                                     <label class="col-lg-3 col-form-label form-control-label"></label>

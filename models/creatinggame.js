@@ -4,8 +4,7 @@ const schema = new mongoose.Schema({
   groupName: {
     type: String,
     unique: true,
-    required: true,
-    lowercase: true
+    required: true
   },
   location: {
     type: mongoose.Types.ObjectId,

@@ -28,13 +28,22 @@ app.set('view engine', 'hbs');
 hbs.registerPartials(__dirname + '/views/partials');
 
 
-hbs.registerHelper('equal', function(lvalue, rvalue, options) {
+hbs.registerHelper('notEqual', function(lvalue, rvalue, options) {
   if ( lvalue == rvalue ) {
-    return options.inverse(this);
-  } else {
     return options.fn(this);
+  } else {
+    return options.inverse(this);
   }
 });
+
+
+// hbs.registerHelper("ifvalue", function(conditional, options) {
+//   if (conditional == options.hash.equals) {
+//       return options.fn(this);
+//   } else {
+//       return options.inverse(this);
+//   }
+// });
 
 app.use(logger('dev'));
 app.use(express.urlencoded({ extended: true }));
