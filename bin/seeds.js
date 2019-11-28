@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 //importing the celebrities model
 const Field = require('../models/field');
 
-const MONGODB_URI = 'mongodb://localhost/pelada-database';
+const MONGODB_URI = 'mongodb://heroku_6fgxlfqb:t09d9gmlhchp667o3rlnacfmmo@ds037601.mlab.com:37601/heroku_6fgxlfqb';
 
 // Connection to the database "Fields-pelada-database"
 mongoose
