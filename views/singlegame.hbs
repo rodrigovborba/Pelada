@@ -19,7 +19,7 @@
                             </div>
                             {{!-- Field Information --}}
                             <div class="col-md-12">
-                                <h3>Field Information</h3>
+                                <h4>Field Information</h4>
                                 <h5 class="mt-2"><span class="fa fa-clock-o ion-clock float-right"></span></h5>
                                 <table class="table table-sm table-hover table-striped">
                                     <tbody>
@@ -43,7 +43,7 @@
                             </div>
                             {{!-- Game Information --}}
                             <div class="col-md-12">
-                                <h3>Game Information</h3>
+                                <h4>Game Information</h4>
                                 <h5 class="mt-2"><span class="fa fa-clock-o ion-clock float-right"></span></h5>
                                 <table class="table table-sm table-hover table-striped">
                                     <tbody>
@@ -72,7 +72,7 @@
                             </div>
                             {{!-- Users --}}
                             <div class="col-md-12">
-                                <h3>Users</h3>
+                                <h4>Confirmed Players</h4>
                                 <h5 class="mt-2"><span class="fa fa-clock-o ion-clock float-right"></span></h5>
                                 <table class="table table-hover table-striped text-center">
                                     <thead>
@@ -90,8 +90,8 @@
                                             <td>{{this.position}}</td>
                                             <td>{{this.goals}}</td>
                                             <td>
-                                            <form action="/user/{{../game.id}}/delete" method="POST">
-                                            <button class="btn btn-danger">Leave</button>
+                                                <form action="/user/{{../game.id}}/delete" method="POST">
+                                                    <button class="btn btn-danger">Leave</button>
                                         </tr>
                                     </tbody>
                                     {{/each}}
@@ -99,8 +99,8 @@
                                 <div class="form-group row">
                                     <label class="col-lg-3 col-form-label form-control-label"></label>
                                     <div class="col-lg-9">
-                                        <form action="/joingame/{{game.id}}" method="POST" >
-                                        <button class="btn btn-success">Join</button>
+                                        <form action="/joingame/{{game.id}}" method="POST">
+                                            <button class="btn btn-success">Join</button>
                                         </form>
                                     </div>
                                 </div>

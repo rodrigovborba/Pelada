@@ -41,15 +41,13 @@ const schema = new mongoose.Schema({
     default: 'Pending Confirmation'
   },
   confirmationCode: {
-    type: String,
-    unique: true
+    type: String
   },
 
   photo: {
     type: String,
     default:'../images/deafaultPic.jpg'
   }
-
 });
 
 const User = mongoose.model('User', schema);
