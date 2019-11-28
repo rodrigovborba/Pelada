@@ -223,12 +223,22 @@ router.post('/joingame/:id', (req, res, next) => {
       });
 
 // Rendering single page
+//const {ObjectId} = require('mongodb'); // or ObjectID 
+
 router.get('/singlegame/:id', routeGuard, (req, res, next) => {
   const id = req.params.id;
+  const userid = req.session.user;
   let helper = false;
+  let attending = false;
   Game.findById(id)
   .populate("location players")
   .then(game => {
+    const attendingPlayer = game.players.filter(item => item._id == userid)[0]
+    if (attendingPlayer) {
+      attending = true;
+    } else {
+      attending = false;
+    }
     console.log("AUTHOR",game.author, "USER ID",req.session.user);
     if (game.author == req.session.user) {
       console.log("NOTICE ME")
@@ -236,7 +246,8 @@ router.get('/singlegame/:id', routeGuard, (req, res, next) => {
     }
       res.render('singlegame', {
         game,
-        helper
+        helper,
+        attending
       });
     })
     .catch(error => {
