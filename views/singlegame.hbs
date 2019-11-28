@@ -89,8 +89,9 @@
                                             <td>{{this.firstname}}</td>
                                             <td>{{this.position}}</td>
                                             <td>{{this.goals}}</td>
-                                            <td><a href="/singlegame/{{_id}}"
-                                                    class="btn btn-danger button-to-info-games">Delete</a></td>
+                                            <td>
+                                            <form action="/user/{{../game.id}}/delete" method="POST">
+                                            <button class="btn btn-danger">Leave</button>
                                         </tr>
                                     </tbody>
                                     {{/each}}

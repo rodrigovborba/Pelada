@@ -238,7 +238,36 @@ router.get('/singlegame/:id', (req, res, next) => {
     });
 });
 
+router.post('/user/:id/delete', (req, res, next) => {
+  const gamesid = req.params.id;
+  const playerid = req.session.user;
+          Game.findByIdAndUpdate(gamesid, {
+            $pull: {
+              players: playerid
+              }
+          })
+          .then(game => {
+            console.log("GAMES", gamesid);
+            console.log("PLAYERS", playerid);
+              res.redirect('/singlegame/' + game._id);
+          })
+          .catch(error => {
+              next(error);
+          });
+      });
 
+
+// Deleting Player
+// router.post("/user/:id/delete", (req, res, next) => {
+//   const playerid = req.session.user;
+//   Game.findByIdAndRemove({players: playerid})
+//     .then(game => {
+//       res.redirect("/singlegame/" + game._id);
+//     })
+//     .catch(error => {
+//       next(error);
+//     });
+// });
 
 router.post('/edit/:id', (req, res, next) => {
   const id = req.params.id;
