@@ -50,7 +50,7 @@ router.post('/edit/:id', routeGuard, (req, res, next) => {
             const id = req.params.id;
             console.log(req.file);
             
-            User.findByIdAndUpdate(id, {
+            User.findByIdAndUpdate(id,{
                 photo: req.file.url
             })
             .then(user => {
