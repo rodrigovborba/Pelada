@@ -295,12 +295,25 @@ router.post('/edit/:id', routeGuard, (req, res, next) => {
               next(error);
           });
       });
-
+// Delete Game From My Games
 router.post('/deletegame/:id', routeGuard, (req, res, next) => {
   const gameId = req.params.id;
   Game.findByIdAndRemove(gameId)
     .then(user => {
       res.redirect("/mygames");
+    })
+    .catch(error => {
+      next(error);
+    });
+});
+
+// Delete Game From Single Game
+// Fix this Saturday
+router.post('/deletegame1/:id', routeGuard, (req, res, next) => {
+  const gameId = req.params.id;
+  Game.findByIdAndRemove(gameId)
+    .then(user => {
+      res.redirect("/games");
     })
     .catch(error => {
       next(error);
