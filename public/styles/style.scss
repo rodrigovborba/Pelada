@@ -1,4 +1,4 @@
-$font-sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
+$font-sans: "Bebas Neue", Arial, sans-serif;
 $link-color: #00b7ff;
 
 body {
@@ -8,10 +8,18 @@ body {
 }
 
 .description {
-  color: black;
-  font-size: 28px;
-  margin-top: 120px;
-  font-style: italic;
+  color: white;
+  font-size: 32px;
+  padding-top: 170px;
+  letter-spacing: 1.7px;
+}
+
+.btn-welcome {
+  padding: 18px;
+  margin: 20px;
+  width: 18%;
+  font-size: 22px;
+  letter-spacing: 1px;
 }
 
 a {
@@ -102,4 +110,12 @@ section {
 
 .p-2 {
   margin-right: 40px;
+}
+
+/// styling backgrounds
+.background-image {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('../images/pelada1.jpg');
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
 }

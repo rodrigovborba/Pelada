@@ -23,14 +23,14 @@ router.get('/', routeGuard, (req, res, next) => {
   Game.find()
     .populate("author players")
     .then(game => {
-      console.log("UNDERSTANDING  GAME DATA", game)
+      //console.log("UNDERSTANDING  GAME DATA", game);
       const mygames=[...game].filter(item=>{
         return item.author._id == userId;
       });
       const joinedgames=[...game].map(item => {
-        return item.players
+        return item.players;
         })
-      console.log("NEW CONSOLE LOG", joinedgames)
+     // console.log("NEW CONSOLE LOG", joinedgames)
       res.render('mygames', {
         game,
         mygames,

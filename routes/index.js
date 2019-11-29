@@ -267,7 +267,7 @@ router.post('/user/:id/delete', (req, res, next) => {
             console.log("GAMES DELETE ROUTE");
             console.log("GAMES", gamesid);
             console.log("PLAYERS", playerid);
-              res.redirect('/singlegame/' + game._id);
+              res.redirect('/singlegame/' + gamesid);
           })
           .catch(error => {
               next(error);
@@ -289,6 +289,8 @@ router.post('/edit/:id', routeGuard, (req, res, next) => {
               time
           })
           .then(game => {
+            console.log(game);
+            
               res.redirect('/singlegame/' + game._id);
           })
           .catch(error => {
