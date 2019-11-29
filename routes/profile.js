@@ -28,36 +28,36 @@ router.post('/edit/:id', routeGuard, (req, res, next) => {
         birthdate,
         position
     } = req.body;
-            User.findByIdAndUpdate(id, {
-                firstname,
-                surname,
-                birthdate,
-                position
-            })
-            .then(user => {
-                res.redirect('/profile/' + user._id);
-            })
-            .catch(error => {
-                next(error);
-            });
+    User.findByIdAndUpdate(id, {
+            firstname,
+            surname,
+            birthdate,
+            position
+        })
+        .then(user => {
+            res.redirect('/profile/' + user._id);
+        })
+        .catch(error => {
+            next(error);
         });
+});
 
-        router.get('/uploadPhoto/:id', (req, res, next) => {
-            res.render('uploadProfilePhoto');
-          });
+router.get('/uploadPhoto/:id', (req, res, next) => {
+    res.render('uploadProfilePhoto');
+});
 
-        router.post('/photoUpload/:id', uploadCloud.single('photo'), (req, res, next) => {
-            const id = req.params.id;
-            console.log(req.file);
-            
-            User.findByIdAndUpdate(id,{
-                photo: req.file.url
-            })
-            .then(user => {
-                res.redirect('/profile/' + user._id);
-            })
-            .catch(error => {
-                next(error);
-            });
+router.post('/photoUpload/:id', uploadCloud.single('photo'), (req, res, next) => {
+    const id = req.params.id;
+    console.log(req.file);
+
+    User.findByIdAndUpdate(id, {
+            photo: req.file.url
+        })
+        .then(user => {
+            res.redirect('/profile/' + user._id);
+        })
+        .catch(error => {
+            next(error);
         });
+});
 module.exports = router;

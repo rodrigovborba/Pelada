@@ -46,7 +46,7 @@ const schema = new mongoose.Schema({
 
   photo: {
     type: String,
-    default:'../images/deafaultPic.jpg'
+    default: '../images/deafaultPic.jpg'
   }
 });
 
