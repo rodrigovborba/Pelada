@@ -36,6 +36,14 @@ hbs.registerHelper('equal', function(lvalue, rvalue, options) {
   }
 });
 
+hbs.registerHelper('notEqual', function(lvalue, rvalue, options) {
+  if ( lvalue == rvalue ) {
+    return options.fn(this);
+  } else {
+    return options.inverse(this);
+  }
+});
+
 app.use(logger('dev'));
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());

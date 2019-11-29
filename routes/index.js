@@ -86,7 +86,7 @@ router.post('/authentication', (req, res, next) => {
         .catch(error => {
           console.log(error)
         })
-      res.redirect('/');
+      res.redirect('profile/' + user._id);
     })
     .catch(error => {
       next(error);
@@ -233,7 +233,7 @@ router.get('/singlegame/:id', routeGuard, (req, res, next) => {
   Game.findById(id)
   .populate("location players")
   .then(game => {
-    const attendingPlayer = game.players.filter(item => item._id == userid)[0]
+    const attendingPlayer = game.players.filter(item => item._id == userid)[0];
     if (attendingPlayer) {
       attending = true;
     } else {
@@ -241,7 +241,7 @@ router.get('/singlegame/:id', routeGuard, (req, res, next) => {
     }
     console.log("AUTHOR",game.author, "USER ID",req.session.user);
     if (game.author == req.session.user) {
-      console.log("NOTICE ME")
+      console.log("NOTICE ME");
       helper = true;
     }
       res.render('singlegame', {
@@ -274,19 +274,6 @@ router.post('/user/:id/delete', (req, res, next) => {
           });
       });
 
-
-// Deleting Player
-// router.post("/user/:id/delete", (req, res, next) => {
-//   const playerid = req.session.user;
-//   Game.findByIdAndRemove({players: playerid})
-//     .then(game => {
-//       res.redirect("/singlegame/" + game._id);
-//     })
-//     .catch(error => {
-//       next(error);
-//     });
-// });
-
 router.post('/edit/:id', routeGuard, (req, res, next) => {
   const id = req.params.id;
   const {
@@ -308,6 +295,17 @@ router.post('/edit/:id', routeGuard, (req, res, next) => {
               next(error);
           });
       });
+
+router.post('/deletegame/:id', routeGuard, (req, res, next) => {
+  const gameId = req.params.id;
+  Game.findByIdAndRemove(gameId)
+    .then(user => {
+      res.redirect("/mygames");
+    })
+    .catch(error => {
+      next(error);
+    });
+});
 
 
 router.get('/signup', (req, res, next) => {

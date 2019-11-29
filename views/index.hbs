@@ -1,8 +1,8 @@
 <section class="description">
-    <p>Looking for places or players to play football with?</p>
+    <p class="welcome-page">Looking for places or players to play football with?</p>
     <p>This is the best plataform to create or join a team of players.</p>
 </section>
-<div class="div-map map-welcome-page" id="map"></div>
+{{!-- <div class="div-map map-welcome-page" id="map"></div> --}}
 <script>
     var map, infoWindow;
     let markersArray = [];
@@ -11,7 +11,7 @@
             center: { lat: 38.6992185, lng: -9.2001777 },
             zoom: 11
         });
-        addMarker({ lat: 38.6992185, lng: -9.2001777 }, "green");
+        // addMarker({ lat: 38.6992185, lng: -9.2001777 }, "green");
         infoWindow = new google.maps.InfoWindow;
 
         // Try HTML5 geolocation.
