@@ -16,12 +16,12 @@
                 <h5 class="mt-2"><span class="fa fa-clock-o ion-clock float-right"></span></h5>
                 <div class="tab-pane" id="edit">
                   <form role="form" action="/creategame" method="POST">
-                  <div class="form-group row">
+                    <div class="form-group row">
                       <label for="location" class="col-lg-3 col-form-label form-control-label">Location</label>
                       <div class="col-lg-9">
                         <select name="location" class="form-control">
                           {{#each fields}}
-                         <option value="{{this._id}}">{{this.name}} at {{this.location}}</option>
+                          <option value="{{this._id}}">{{this.name}} at {{this.location}}</option>
                           {{/each}}
                         </select>
                       </div>
@@ -89,63 +89,67 @@
       </div>
       <div class="col-lg-4 order-lg-1 text-center" id="map">
 
-                <script>
-                    var map, infoWindow;
-                    let markersArray = [];
-                    function initMap() {
-                        map = new google.maps.Map(document.getElementById('map'), {
-                            center: { lat: 38.6992185, lng: -9.2001777 },
-                            zoom: 11
-                        });
-                       // addMarker({ lat: 38.6992185, lng: -9.2001777 }, "green");
-                        infoWindow = new google.maps.InfoWindow;
+        <script>
+          var map, infoWindow;
+          let markersArray = [];
+          function initMap() {
+            map = new google.maps.Map(document.getElementById('map'), {
+              center: { lat: 38.6992185, lng: -9.2001777 },
+              zoom: 11
+            });
+            addMarker({ lat: 38.7552876, lng: -9.1571719 }, "red");
+            addMarker({ lat: 38.7358789, lng: -9.1682929 }, "red");
+            addMarker({ lat: 38.7268884, lng: -9.2113177 }, "red");
+            addMarker({ lat: 38.7241060, lng: -9.1345574 }, "red");
+            addMarker({ lat: 38.7402301, lng: -9.3611037 }, "red");
+            infoWindow = new google.maps.InfoWindow;
 
-                        // Try HTML5 geolocation.
-                        if (navigator.geolocation) {
-                            navigator.geolocation.getCurrentPosition(function (position) {
-                                var pos = {
-                                    lat: position.coords.latitude,
-                                    lng: position.coords.longitude
-                                };
+            // Try HTML5 geolocation.
+            if (navigator.geolocation) {
+              navigator.geolocation.getCurrentPosition(function (position) {
+                var pos = {
+                  lat: position.coords.latitude,
+                  lng: position.coords.longitude
+                };
 
-                                addMarker({ lat: position.coords.latitude, lng: position.coords.longitude }, "yellow");
-                                infoWindow.setPosition(pos);
-                                infoWindow.setContent('Location found.');
-                                infoWindow.open(map);
-                                map.setCenter(pos);
-                            }, function () {
-                                handleLocationError(true, infoWindow, map.getCenter());
-                            });
-                        } else {
-                            // Browser doesn't support Geolocation
-                            handleLocationError(false, infoWindow, map.getCenter());
-                        }
-                    }
-                    function addMarker(latLng, color) {
-                        let url = "http://maps.google.com/mapfiles/ms/icons/";
-                        url += color + "-dot.png";
+                addMarker({ lat: position.coords.latitude, lng: position.coords.longitude }, "yellow");
+                infoWindow.setPosition(pos);
+                infoWindow.setContent('Location found.');
+                infoWindow.open(map);
+                map.setCenter(pos);
+              }, function () {
+                handleLocationError(true, infoWindow, map.getCenter());
+              });
+            } else {
+              // Browser doesn't support Geolocation
+              handleLocationError(false, infoWindow, map.getCenter());
+            }
+          }
+          function addMarker(latLng, color) {
+            let url = "http://maps.google.com/mapfiles/ms/icons/";
+            url += color + "-dot.png";
 
-                        let marker = new google.maps.Marker({
-                            map: map,
-                            position: latLng,
-                            icon: {
-                                url: url
-                            }
-                        });
+            let marker = new google.maps.Marker({
+              map: map,
+              position: latLng,
+              icon: {
+                url: url
+              }
+            });
 
-                        //store the marker object drawn in global array
-                        markersArray.push(marker);
-                    }
+            //store the marker object drawn in global array
+            markersArray.push(marker);
+          }
 
-                    function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-                        infoWindow.setPosition(pos);
-                        infoWindow.setContent(browserHasGeolocation ?
-                            'Error: The Geolocation service failed.' :
-                            'Error: Your browser doesn\'t support geolocation.');
-                        infoWindow.open(map);
-                    }
-                </script>
-            </div>
+          function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+            infoWindow.setPosition(pos);
+            infoWindow.setContent(browserHasGeolocation ?
+              'Error: The Geolocation service failed.' :
+              'Error: Your browser doesn\'t support geolocation.');
+            infoWindow.open(map);
+          }
+        </script>
+      </div>
     </div>
   </div>
 </div>
