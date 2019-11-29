@@ -69,6 +69,7 @@
                                                 <th scope="col">Date</th>
                                                 <th scope="col">Time</th>
                                                 <th scope="col">#</th>
+                                                <th scope="col">#</th>
                                             </tr>
                                         </thead>
                                         {{#each game}}
@@ -80,6 +81,9 @@
                                                 <td>{{../this.numberOfPlayers}}</td>
                                                 <td>{{../this.dayOfPlay}}</td>
                                                 <td>{{../this.time}}</td>
+                                                 <td><a href="/singlegame/{{../this._id}}"
+                                                        class="btn btn-info button-to-info-games">Info</a>
+                                                </td>
                                                 <td>
                                                     <form action="/user/{{../this._id}}/delete1" method="POST">
                                                         <button class="btn btn-outline-danger">Leave</button>
