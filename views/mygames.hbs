@@ -27,9 +27,11 @@
                                                 <th scope="col">Date</th>
                                                 <th scope="col">Time</th>
                                                 <th scope="col">#</th>
+                                                <th scope="col">#</th>
                                             </tr>
                                         </thead>
-                                        {{#each game}}
+                                        {{!-- {{joinedgames}} --}}
+                                        {{#each mygames}}
                                         <tbody id="myTable">
                                             <tr class="table table-striped">
                                                 <td>{{groupName}}</td>
@@ -37,7 +39,13 @@
                                                 <td>{{dayOfPlay}}</td>
                                                 <td>{{time}}</td>
                                                 <td><a href="/singlegame/{{_id}}"
-                                                        class="btn btn-danger button-to-info-games">Delete</a></td>
+                                                        class="btn btn-info button-to-info-games">Info</a>
+                                                </td>
+                                                <td>
+                                                    <form action="/deletegame/{{id}}" method="POST">
+                                                        <button class="btn btn-outline-danger">Delete</button>
+                                                    </form>
+                                                </td>
                                             </tr>
                                         </tbody>
                                         {{/each}}
@@ -64,16 +72,24 @@
                                             </tr>
                                         </thead>
                                         {{#each game}}
+                                        {{#each this.players}}
+                                        {{#notEqual this.username ../../user.username}}
                                         <tbody id="myTable">
                                             <tr class="table table-striped">
-                                                <td>{{groupName}}</td>
-                                                <td>{{numberOfPlayers}}</td>
-                                                <td>{{dayOfPlay}}</td>
-                                                <td>{{time}}</td>
-                                                <td><a href="/singlegame/{{_id}}"
-                                                        class="btn btn-danger button-to-info-games">Leave</a></td>
+                                                <td>{{../this.groupName}}</td>
+                                                <td>{{../this.numberOfPlayers}}</td>
+                                                <td>{{../this.dayOfPlay}}</td>
+                                                <td>{{../this.time}}</td>
+                                                <td>
+                                                    <form action="/user/{{id}}/delete" method="POST">
+                                                        <button class="btn btn-outline-danger">Leave</button>
+                                                    </form>
+                                                </td>
                                             </tr>
                                         </tbody>
+
+                                        {{/notEqual}}
+                                        {{/each}}
                                         {{/each}}
                                     </table>
                                 </div>

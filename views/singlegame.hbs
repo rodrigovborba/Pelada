@@ -10,6 +10,9 @@
                     <li class="nav-item" id="show">
                         <a href="" data-target="#edit" data-toggle="tab" class="nav-link">Edit</a>
                     </li>
+                    <li class="nav-item" id="show">
+                        <a href="" data-target="#delete" data-toggle="tab" class="nav-link">Delete</a>
+                    </li>
                 </ul>
                 {{/if}}
                 <div class="tab-content py-4">
@@ -90,16 +93,14 @@
                                             <td>{{this.position}}</td>
                                             <td>{{this.goals}}</td>
                                             <td>
-                                                 <h1>
-
-                                                 </h1>
-                                                  {{#notEqual this.username ../user.username }}
+                                                {{#notEqual this.username ../user.username }}
                                                 <form action="/user/{{../game.id}}/delete" method="POST">
-                                                    <button class="btn btn-danger">Leave</button>
+                                                    <button class="btn btn-outline-danger">Leave</button>
                                                 </form>
-                                                 {{/notEqual}}
-                                    {{/each}}
-                                            
+                                            </td>
+                                            {{/notEqual}}
+                                            {{/each}}
+
                                         </tr>
                                     </tbody>
                                 </table>
@@ -109,7 +110,7 @@
                                         {{#unless attending}}
                                         <form action="/joingame/{{game.id}}" method="POST">
                                             <button class="btn btn-success">Join</button>
-                                        {{/unless}}
+                                            {{/unless}}
                                         </form>
                                     </div>
                                 </div>
@@ -170,6 +171,45 @@
                             </div>
                         </form>
                     </div>
+                    <div class="tab-pane" id="delete">
+                        <div class="col-md-12">
+                            <h5 class="mt-2"><span class="fa fa-clock-o ion-clock float-right"></span></h5>
+                            <table class="table table-hover table-striped text-center">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Date</th>
+                                        <th scope="col">Time</th>
+                                        <th scope="col">#</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody id="myTable">
+                                    <tr class="table table-striped">
+                                        <td>{{game.groupName}}</td>
+                                        <td>{{game.dayOfPlay}}</td>
+                                        <td>{{game.time}}</td>
+                                        <td>
+                                            <form action="/deletegame1/{{game.id}}" method="POST">
+                                                <button class="btn btn-outline-danger">Delete</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                </tbody>
+
+                            </table>
+                            <div class="form-group row">
+                                <label class="col-lg-3 col-form-label form-control-label"></label>
+                                <div class="col-lg-9">
+                                    {{#unless attending}}
+                                    <form action="/joingame/{{game.id}}" method="POST">
+                                        <button class="btn btn-success">Join</button>
+                                        {{/unless}}
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="col-lg-4 order-lg-1 text-center" id="map">
@@ -182,7 +222,7 @@
                             center: { lat: 38.6992185, lng: -9.2001777 },
                             zoom: 11
                         });
-                        addMarker({ lat: 38.6992185, lng: -9.2001777 }, "green");
+                        // addMarker({ lat: 38.6992185, lng: -9.2001777 }, "green");
                         infoWindow = new google.maps.InfoWindow;
 
                         // Try HTML5 geolocation.

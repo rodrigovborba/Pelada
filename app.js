@@ -36,14 +36,13 @@ hbs.registerHelper('notEqual', function(lvalue, rvalue, options) {
   }
 });
 
-
-// hbs.registerHelper("ifvalue", function(conditional, options) {
-//   if (conditional == options.hash.equals) {
-//       return options.fn(this);
-//   } else {
-//       return options.inverse(this);
-//   }
-// });
+hbs.registerHelper('notEqual', function(lvalue, rvalue, options) {
+  if ( lvalue == rvalue ) {
+    return options.fn(this);
+  } else {
+    return options.inverse(this);
+  }
+});
 
 app.use(logger('dev'));
 app.use(express.urlencoded({ extended: true }));
